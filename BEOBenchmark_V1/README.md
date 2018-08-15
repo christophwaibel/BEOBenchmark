@@ -16,7 +16,7 @@ Should you want to re-implement the problems in another platform (e.g. GenOpt), 
 \
 \
 \
-The 15 problems are from following studies: 
+The 15 problems are from following studies (please cite respectively, should you publish own work using any of these problems): 
 * M. Wetter & J. Wright (2004). A comparison of deterministic and probabilistic optimization algorithms for nonsmooth simulation-based optimization. In: Building and Environment 39:8, 989-999. (Problems 1 to 8)
 * J. Kämpf, M. Wetter, D. Robinson (2010). A comparison of global optimization algorithms with standard benchmark functions and real-world applications using EnergyPlus. In: Journal of Building Performance Simulation 3:2, 103-120. (Problems 9 and 10)
 * A. Nguyen & S. Reiter (2014). Passive designs and strategies for low-cost housing using simulation-based optimization and different thermal comfort criteria. In: Journal of Building Performance Simulation 7:1, 68-81. (Problems 11 and 12)
