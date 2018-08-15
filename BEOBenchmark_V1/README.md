@@ -3,7 +3,7 @@ BEOBenchmark_V1 contains 15 BEO problems using [EnergyPlus V 8.5.0](https://gith
 
 How-to:
 
-1. Download the [GHEnergyPlus.gha](../GHEnergyPlus.gha) file and put it into your Grasshopper components folder
+1. Download the [GHEnergyPlus.gha](../BEOBenchmark_V1/GHEnergyPlus.gha) file and put it into your Grasshopper components folder
 
 , example how to implement .dll. Example how to use external process, ask thomas? open-source Opossum?
 
