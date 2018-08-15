@@ -26,7 +26,7 @@ The 15 problems are from following studies (please cite respectively, should you
 \
 \
 \
-Finally, please cite the forthcoming publication (**to be added**), should you publish own work using this test set.
+Finally, please cite the forthcoming publication (**to be added**), should you publish own work using this test set. There, you can also find a number of performance metrics for evaluating and comparing your optimization algorithm.
 \
 \
 \
