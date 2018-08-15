@@ -4,7 +4,7 @@ Building Energy Optimization (BEO) problem test bed for benchmarking black-box o
 \
 \
 \
-**BEOBenchmark_V1**
+**BEOBenchmark_V1**\
 BEOBenchmark_V1 contains 15 BEO problems using [EnergyPlus V 8.5.0](https://github.com/NREL/EnergyPlus/releases/tag/v8.5.0) as simulator and Rhinoceros 3D Grasshopper as software platform.
 
 The 15 problems are from following studies: 
