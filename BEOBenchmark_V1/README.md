@@ -12,7 +12,7 @@ How-to:
 \
 \
 \
-Should you want to re-implement the problems in another platform (e.g. GenOpt), you can still use the .idf files frmo the Input folder. All the necessary code (i.e. objective function and idf-file modification) can be found in the [C# source code](../BEOBenchmark_V1/Sourcecode). Only with BEO problem 15 this could become tricky, since here geometry is modified using the Rhino geometry library.
+Should you want to re-implement the problems in another platform (e.g. GenOpt), you can still use the .idf files from the Input folder. All the necessary code (i.e. objective function and idf-file modification) can be found in the [C# source code](../BEOBenchmark_V1/Sourcecode). Only with BEO problem 15 this could become tricky, since here geometry is modified using the Rhino geometry library.
 \
 \
 \
@@ -30,5 +30,5 @@ Finally, please cite the forthcoming publication (**to be added**), should you p
 \
 \
 \
-For questions, contact us: chwaibel@student.ethz.ch and thomas_wortmann@mymail.sutd.edu.sg
+For questions, please contact us: chwaibel@student.ethz.ch and thomas_wortmann@mymail.sutd.edu.sg
 
