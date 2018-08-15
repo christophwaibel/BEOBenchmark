@@ -30,5 +30,5 @@ Finally, please cite the forthcoming publication (**to be added**), should you p
 \
 \
 \
-For questions, please contact us: chwaibel@student.ethz.ch and thomas_wortmann@mymail.sutd.edu.sg
+For questions, please contact us: chwaibel@student.ethz.ch
 
