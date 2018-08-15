@@ -26,5 +26,9 @@ The 15 problems are from following studies (please cite respectively, should you
 \
 \
 \
+Finally, please cite the forthcoming publication (**to be added**), should you publish own work using this test set.
+\
+\
+\
 For questions, contact us: chwaibel@student.ethz.ch and thomas_wortmann@mymail.sutd.edu.sg
 
