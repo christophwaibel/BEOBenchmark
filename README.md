@@ -7,4 +7,4 @@ The first test bed version [BEOBenchmark_V1](../master/BEOBenchmark_V1) includes
 Contributions and collaborations are more than welcome to extend the test bed! Further developments could include more EnergyPlus problems, problems using other simulators (such as [Modelica](https://simulationresearch.lbl.gov/modelica/), [CitySim](https://citysim.epfl.ch/), or [BRCM](https://brcm.ethz.ch/doku.php)), implementations in other software platforms such as [GenOpt](https://simulationresearch.lbl.gov/GO/), or multi-objective problems. 
 \
 \
-Contact us under: chwaibel@student.ethz.ch and thomas_wortmann@mymail.sutd.edu.sg
+Contact us under: chwaibel@student.ethz.ch
