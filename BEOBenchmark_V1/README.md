@@ -6,7 +6,7 @@ How-to:
 1. Download the [GHEnergyPlus.gha](../BEOBenchmark_V1/GHEnergyPlus.gha) file and put it into your Grasshopper components folder. You can find this folder by entering "GrasshopperFolders", "Components" into your Rhino command line. Make sure that the "read-only"-option of the .gha file properties is unchecked.
 2. Create a folder "C:/eplus/EPOpti17". 
 3. Create another folder inside that folder: "C:/eplus/EPOpti17/Output0".
-4. Download the [Input](../BEOBenchmark_V1/Input) folder (**WAITING FOR PERMISSION**), put it into "C:/eplus/EPOpti17", and rename it to "C:/eplus/EPOpti17/Input0". You can copy paste this "Input0" folder and give it different indices, e.g. "Input1", "Input2", etc. This is useful if you want to run several processes in parallel (careful, your Grasshopper optimization component and/or optimization library needs to support it).
+4. Download the [Input](../BEOBenchmark_V1/Input) folder, put it into "C:/eplus/EPOpti17", and rename it to "C:/eplus/EPOpti17/Input0". You can copy paste this "Input0" folder and give it different indices, e.g. "Input1", "Input2", etc. This is useful if you want to run several processes in parallel (careful, your Grasshopper optimization component and/or optimization library needs to support it).
 5. Download the [Grasshopper problem files folder](../BEOBenchmark_V1/Grasshopper) and put it anywhere you want. This folder contains all 15 problems of the test bed.
 6. Start Rhino as admin, otherwise it won't work. You are good to go.
 \
