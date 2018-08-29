@@ -1,0 +1,200 @@
+ ! The following Location and Design Day data are produced as possible from the weather data source.
+ ! No special attempts at re-creating or determining missing data parts (e.g. Wind speed or direction)
+ ! are done.  Therefore, you should look at the data and fill in any incorrect values as you desire.
+  
+ Location,
+  BELGRADE_YUG IWEC Data,     !- Location Name
+   44.82000     ,     !- Latitude {N+ S-}
+   20.28000     ,     !- Longitude {W- E+}
+   1.000000     ,     !- Time Zone Relative to GMT {GMT+/-}
+   99.00000     ;     !- Elevation {m}
+  
+ ! Using Design Conditions from "World Climate Design Data 2001 ASHRAE Handbook"
+  
+ ! BELGRADE_YUG Heating 99.6%, MaxDB= -11.50 Wind Speed=   2.50 Wind Dir=  10.00
+ DesignDay,
+     BELGRADE_YUG Heating 99.6% Conditions,     !- Name
+  -11.50000     ,     !- Max Dry-Bulb {C}
+  0.0000000E+00 ,     !- Daily Temp Range {C}
+  -11.50000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+   2.500000     ,     !- Wind Speed {M/Sec}
+   10.00000     ,     !- Wind Direction {Degrees N=0, S=180}
+  0.0000000E+00 ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           1 ,     !- Month
+   WinterDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Heating 99%, MaxDB=  -8.90 Wind Speed=   2.70 Wind Dir= 120.00
+ DesignDay,
+     BELGRADE_YUG Heating 99% Conditions,     !- Name
+  -8.900000     ,     !- Max Dry-Bulb {C}
+  0.0000000E+00 ,     !- Daily Temp Range {C}
+  -8.900000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+   2.700000     ,     !- Wind Speed {M/Sec}
+   120.0000     ,     !- Wind Direction {Degrees N=0, S=180}
+  0.0000000E+00 ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           1 ,     !- Month
+   WinterDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DB=>MWB) .4%, MaxDB=  33.40 MWB=  21.80
+ DesignDay,
+     BELGRADE_YUG Cooling .4% Conditions DB=>MWB,     !- Name
+   33.40000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   21.80000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DB=>MWB) 1%, MaxDB=  31.80 MWB=  21.10
+ DesignDay,
+     BELGRADE_YUG Cooling 1% Conditions DB=>MWB,     !- Name
+   31.80000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   21.10000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DB=>MWB) 2%, MaxDB=  29.90 MWB=  20.50
+ DesignDay,
+     BELGRADE_YUG Cooling 2% Conditions DB=>MWB,     !- Name
+   29.90000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   20.50000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (WB=>MDB) .4%, MDB=  30.30 WB=  22.70
+ DesignDay,
+     BELGRADE_YUG Cooling .4% Conditions WB=>MDB,     !- Name
+   30.30000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   22.70000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (WB=>MDB) 1%, MDB=  29.60 WB=  21.80
+ DesignDay,
+     BELGRADE_YUG Cooling 1% Conditions WB=>MDB,     !- Name
+   29.60000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   21.80000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (WB=>MDB) 2%, MDB=  28.60 WB=  21.10
+ DesignDay,
+     BELGRADE_YUG Cooling 2% Conditions WB=>MDB,     !- Name
+   28.60000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   21.10000     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DP=>MDB) .4%, MDB=  26.80 DP=  20.10 HR=   0.01
+ DesignDay,
+     BELGRADE_YUG Cooling .4% Conditions DP=>MDB,     !- Name
+   26.80000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   22.10695     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DP=>MDB) 1%, MDB=  25.40 DP=  19.20 HR=   0.01
+ DesignDay,
+     BELGRADE_YUG Cooling 1% Conditions DP=>MDB,     !- Name
+   25.40000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   21.07893     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  
+ ! BELGRADE_YUG Cooling (DP=>MDB) 2%, MDB=  24.40 DP=  18.40 HR=   0.01
+ DesignDay,
+     BELGRADE_YUG Cooling 2% Conditions DP=>MDB,     !- Name
+   24.40000     ,     !- Max Dry-Bulb {C}
+   12.30000     ,     !- Daily Temp Range {C}
+   20.27662     ,     !- Wet-Bulb at Max {C}
+   100141.3     ,     !- Barometric Pressure {N/M**2}
+  0.0000000E+00 ,     !- Wind Speed {M/Sec}
+  0.0000000E+00 ,     !- Wind Direction {Degrees N=0, S=180}
+   1.000000     ,     !- Clearness {0.0 to 1.1}
+           0 ,     !- Rain {0-no,1-yes}
+           0 ,     !- Snow on ground {0-no,1-yes}
+          21 ,     !- Day of Month
+           7 ,     !- Month
+   SummerDesignDay,      !- Day Type
+           0 ;   !- Daylight Savings Time Indicator
+  

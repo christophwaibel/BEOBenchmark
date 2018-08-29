@@ -1,0 +1,1444 @@
+!-Generator IDFEditor 1.37c
+!-Option SortedOrder
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+!-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
+
+  Version,8.5;
+
+!-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
+
+  SimulationControl,
+    Yes,                     !- Do Zone Sizing Calculation
+    No,                      !- Do System Sizing Calculation
+    No,                      !- Do Plant Sizing Calculation
+    No,                      !- Run Simulation for Sizing Periods
+    Yes;                     !- Run Simulation for Weather File Run Periods
+
+!-   ===========  ALL OBJECTS IN CLASS: BUILDING ===========
+
+  Building,
+    Alfonso Building,        !- Name
+    0,                       !- North Axis {deg}
+    City,                    !- Terrain
+    0.04,                    !- Loads Convergence Tolerance Value
+    0.4,                     !- Temperature Convergence Tolerance Value {deltaC}
+    FullExterior,            !- Solar Distribution
+    25,                      !- Maximum Number of Warmup Days
+    6;                       !- Minimum Number of Warmup Days
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:INSIDE ===========
+
+  SurfaceConvectionAlgorithm:Inside,Simple;
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:OUTSIDE ===========
+
+  SurfaceConvectionAlgorithm:Outside,SimpleCombined;
+
+!-   ===========  ALL OBJECTS IN CLASS: HEATBALANCEALGORITHM ===========
+
+  HeatBalanceAlgorithm,ConductionTransferFunction;
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONECAPACITANCEMULTIPLIER ===========
+!-ZoneCapacitanceMultiplier,
+!-    1;                       !- Multiplier
+!-   ===========  ALL OBJECTS IN CLASS: TIMESTEP ===========
+
+  Timestep,4;
+
+!-   ===========  ALL OBJECTS IN CLASS: RUNPERIOD ===========
+
+  RunPeriod,
+    Annual,                  !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    Tuesday,                 !- Day of Week for Start Day
+    Yes,                     !- Use Weather File Holidays and Special Days
+    Yes,                     !- Use Weather File Daylight Saving Period
+    No,                      !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    Yes;                     !- Use Weather File Snow Indicators
+
+!-   ===========  ALL OBJECTS IN CLASS: SITE:GROUNDTEMPERATURE:BUILDINGSURFACE ===========
+
+  Site:GroundTemperature:BuildingSurface,18,18,18,18,18,18,18,18,18,18,18,18;
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULETYPELIMITS ===========
+
+  ScheduleTypeLimits,
+    Any Number;              !- Name
+
+  ScheduleTypeLimits,
+    Fraction,                !- Name
+    0.0,                     !- Lower Limit Value
+    1.0,                     !- Upper Limit Value
+    CONTINUOUS;              !- Numeric Type
+
+  ScheduleTypeLimits,
+    Temperature,             !- Name
+    -60,                     !- Lower Limit Value
+    200,                     !- Upper Limit Value
+    CONTINUOUS,              !- Numeric Type
+    Temperature;             !- Unit Type
+
+  ScheduleTypeLimits,
+    Control Type,            !- Name
+    0,                       !- Lower Limit Value
+    4,                       !- Upper Limit Value
+    DISCRETE;                !- Numeric Type
+
+  ScheduleTypeLimits,
+    On/Off,                  !- Name
+    0,                       !- Lower Limit Value
+    1,                       !- Upper Limit Value
+    DISCRETE;                !- Numeric Type
+
+  ScheduleTypeLimits,
+    FlowRate,                !- Name
+    0.0,                     !- Lower Limit Value
+    10,                      !- Upper Limit Value
+    CONTINUOUS;              !- Numeric Type
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:COMPACT ===========
+
+  Schedule:Compact,
+    OCCUPY-1,                !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: WeekDays SummerDesignDay, !- Field 2
+    Until: 8:00,0.0,         !- Field 3
+    Until: 11:00,1.00,       !- Field 5
+    Until: 12:00,0.80,       !- Field 7
+    Until: 13:00,0.40,       !- Field 9
+    Until: 14:00,0.80,       !- Field 11
+    Until: 18:00,1.00,       !- Field 13
+    Until: 19:00,0.50,       !- Field 15
+    Until: 24:00,0.0,        !- Field 17
+    For: Weekends WinterDesignDay Holiday, !- Field 19
+    Until: 24:00,0.0;        !- Field 20
+
+  Schedule:Compact,
+    LIGHTS-1,                !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: WeekDays SummerDesignDay, !- Field 2
+    Until: 8:00,0.05,        !- Field 3
+    Until: 9:00,0.9,         !- Field 5
+    Until: 10:00,0.95,       !- Field 7
+    Until: 11:00,1.00,       !- Field 9
+    Until: 12:00,0.95,       !- Field 11
+    Until: 13:00,0.8,        !- Field 13
+    Until: 14:00,0.9,        !- Field 15
+    Until: 18:00,1.00,       !- Field 17
+    Until: 19:00,0.60,       !- Field 19
+    Until: 21:00,0.20,       !- Field 21
+    Until: 24:00,0.05,       !- Field 23
+    For: Weekends WinterDesignDay Holiday, !- Field 25
+    Until: 24:00,0.05;       !- Field 26
+
+  Schedule:Compact,
+    EQUIP-1,                 !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: WeekDays SummerDesignDay, !- Field 2
+    Until: 8:00,0.02,        !- Field 3
+    Until: 9:00,0.4,         !- Field 5
+    Until: 14:00,0.9,        !- Field 7
+    Until: 15:00,0.8,        !- Field 9
+    Until: 16:00,0.7,        !- Field 11
+    Until: 18:00,0.5,        !- Field 13
+    Until: 20:00,0.3,        !- Field 15
+    Until: 24:00,0.02,       !- Field 17
+    For: Weekends WinterDesignDay Holiday, !- Field 19
+    Until: 24:00,0.2;        !- Field 20
+
+  Schedule:Compact,
+    ActSchd,                 !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,117.239997864; !- Field 3
+
+  Schedule:Compact,
+    Zone Control Type Sched, !- Name
+    Control Type,            !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: SummerDesignDay,    !- Field 2
+    Until: 24:00,2,          !- Field 3
+    For: WinterDesignDay,    !- Field 5
+    Until: 24:00,1,          !- Field 6
+    For: AllOtherDays,       !- Field 8
+    Until: 24:00,4;          !- Field 9
+
+  Schedule:Compact,
+    Min OA Sched,            !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays,           !- Field 2
+    Until: 6:00,0.02,        !- Field 3
+    Until: 20:00,1.0,        !- Field 5
+    Until: 24:00,0.02,       !- Field 7
+    For: AllOtherDays,       !- Field 9
+    Until: 24:00,0.02;       !- Field 10
+
+  Schedule:Compact,
+    FanAvailSched,           !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 3/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0,        !- Field 3
+    Through: 9/30,           !- Field 5
+    For: WeekDays,           !- Field 6
+    Until: 6:00,0.0,         !- Field 7
+    Until: 20:00,1.0,        !- Field 9
+    Until: 24:00,0.0,        !- Field 11
+    For: SummerDesignDay WinterDesignDay, !- Field 13
+    Until: 24:00,1.0,        !- Field 14
+    For: AllOtherDays,       !- Field 16
+    Until: 24:00,0.0,        !- Field 17
+    Through: 12/31,          !- Field 19
+    For: AllDays,            !- Field 20
+    Until: 24:00,1.0;        !- Field 21
+
+  Schedule:Compact,
+    CoolingCoilAvailSched,   !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: WeekDays,           !- Field 2
+    Until: 6:00,0.0,         !- Field 3
+    Until: 20:00,1.0,        !- Field 5
+    Until: 24:00,0.0,        !- Field 7
+    For: SummerDesignDay WinterDesignDay, !- Field 9
+    Until: 24:00,1.0,        !- Field 10
+    For: AllOtherDays,       !- Field 12
+    Until: 24:00,0.0;        !- Field 13
+
+  Schedule:Compact,
+    CoolingPumpAvailSched,   !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0;        !- Field 3
+
+  Schedule:Compact,
+    ReheatCoilAvailSched,    !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 3/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0,        !- Field 3
+    Through: 9/30,           !- Field 5
+    For: WeekDays,           !- Field 6
+    Until: 6:00,0.0,         !- Field 7
+    Until: 20:00,1.0,        !- Field 9
+    Until: 24:00,0.0,        !- Field 11
+    For: SummerDesignDay WinterDesignDay, !- Field 13
+    Until: 24:00,1.0,        !- Field 14
+    For: AllOtherDays,       !- Field 16
+    Until: 24:00,0.0,        !- Field 17
+    Through: 12/31,          !- Field 19
+    For: AllDays,            !- Field 20
+    Until: 24:00,1.0;        !- Field 21
+
+  Schedule:Compact,
+    CW Loop Temp Schedule,   !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,7.22;       !- Field 3
+
+  Schedule:Compact,
+    HW Loop Temp Schedule,   !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,82;         !- Field 3
+
+  Schedule:Compact,
+    PlantOnSched,            !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0;        !- Field 3
+
+  Schedule:Compact,
+    Seasonal Reset Supply Air Temp Sch,  !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 3/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,16.0,       !- Field 3
+    Through: 9/30,           !- Field 5
+    For: AllDays,            !- Field 6
+    Until: 24:00,13.0,       !- Field 7
+    Through: 12/31,          !- Field 9
+    For: AllDays,            !- Field 10
+    Until: 24:00,16.0;       !- Field 11
+
+  Schedule:Compact,
+    OA Cooling Supply Air Temp Sch,  !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,11.5;       !- Field 3
+
+  Schedule:Compact,
+    OA Heating Supply Air Temp Sch,  !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,4.5;        !- Field 3
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:CONSTANT ===========
+
+  Schedule:Constant,HeatingSetpoin,Temperature,20;
+
+  Schedule:Constant,CoolingSetpoint,Temperature,28;
+
+  Schedule:Constant,Setpointcontrol,Any Number,4;
+
+  Schedule:Constant,AlwaysOn,On/Off,1;
+
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL ===========
+
+  Material,
+    F07 25mm stucco,         !- Name
+    Smooth,                  !- Roughness
+    0.0254,                  !- Thickness {m}
+    0.72,                    !- Conductivity {W/m-K}
+    1856,                    !- Density {kg/m3}
+    840;                     !- Specific Heat {J/kg-K}
+
+  Material,
+    M15 200mm heavyweight concrete,  !- Name
+    MediumRough,             !- Roughness
+    0.2032,                  !- Thickness {m}
+    1.95,                    !- Conductivity {W/m-K}
+    2240,                    !- Density {kg/m3}
+    900;                     !- Specific Heat {J/kg-K}
+
+  Material,
+    I05 154mm batt insulation,  !- Name
+    VeryRough,               !- Roughness
+    0.1544,                  !- Thickness {m}
+    0.05,                    !- Conductivity {W/m-K}
+    19,                      !- Density {kg/m3}
+    960;                     !- Specific Heat {J/kg-K}
+
+!-   ===========  ALL OBJECTS IN CLASS: CONSTRUCTION ===========
+
+  Construction,
+    Floor,                   !- Name
+    I05 154mm batt insulation;  !- Outside Layer
+
+  Construction,
+    roof,                    !- Name
+    I05 154mm batt insulation;  !- Outside Layer
+
+  Construction,
+    partition,               !- Name
+    partitions;              !- Outside Layer
+
+  Construction,
+    window,                  !- Name
+    windows;                 !- Outside Layer
+
+!-   ===========  ALL OBJECTS IN CLASS: GLOBALGEOMETRYRULES ===========
+
+  GlobalGeometryRules,
+    UpperLeftCorner,         !- Starting Vertex Position
+    CounterClockWise,        !- Vertex Entry Direction
+    relative;                !- Coordinate System
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONE ===========
+
+  Zone,
+    plenum,                  !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    0.609600067;             !- Ceiling Height {m}
+
+  Zone,
+    SouthZone,               !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3;                       !- Ceiling Height {m}
+
+  Zone,
+    EastZone,                !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3;                       !- Ceiling Height {m}
+
+  Zone,
+    NorthZone,               !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3;                       !- Ceiling Height {m}
+
+  Zone,
+    WestZone,                !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3;                       !- Ceiling Height {m}
+
+  Zone,
+    InteriorZone,            !- Name
+    0,                       !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    0,                       !- Z Origin {m}
+    1,                       !- Type
+    1,                       !- Multiplier
+    3;                       !- Ceiling Height {m}
+
+!-   ===========  ALL OBJECTS IN CLASS: INTERNALMASS ===========
+
+  InternalMass,
+    Partitions,              !- Name
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    12;                      !- Surface Area {m2}
+
+!-   ===========  ALL OBJECTS IN CLASS: PEOPLE ===========
+
+  People,
+    SouthZone People 1,      !- Name
+    SouthZone,               !- Zone or ZoneList Name
+    OCCUPY-1,                !- Number of People Schedule Name
+    People/Area,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    0.08,                    !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    ,                        !- Sensible Heat Fraction
+    ActSchd;                 !- Activity Level Schedule Name
+
+  People,
+    EastZone People 1,       !- Name
+    EastZone,                !- Zone or ZoneList Name
+    OCCUPY-1,                !- Number of People Schedule Name
+    People/Area,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    0.08,                    !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    ,                        !- Sensible Heat Fraction
+    ActSchd;                 !- Activity Level Schedule Name
+
+  People,
+    NorthZone People 1,      !- Name
+    NorthZone,               !- Zone or ZoneList Name
+    OCCUPY-1,                !- Number of People Schedule Name
+    People/Area,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    0.08,                    !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    ,                        !- Sensible Heat Fraction
+    ActSchd;                 !- Activity Level Schedule Name
+
+  People,
+    WestZone People 1,       !- Name
+    WestZone,                !- Zone or ZoneList Name
+    OCCUPY-1,                !- Number of People Schedule Name
+    People/Area,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    0.08,                    !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    ,                        !- Sensible Heat Fraction
+    ActSchd;                 !- Activity Level Schedule Name
+
+  People,
+    InteriorZone People 1,   !- Name
+    InteriorZone,            !- Zone or ZoneList Name
+    OCCUPY-1,                !- Number of People Schedule Name
+    People/Area,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    0.08,                    !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    ,                        !- Sensible Heat Fraction
+    ActSchd;                 !- Activity Level Schedule Name
+
+!-   ===========  ALL OBJECTS IN CLASS: LIGHTS ===========
+
+  Lights,
+    SouthZone Lights 1,      !- Name
+    SouthZone,               !- Zone or ZoneList Name
+    LIGHTS-1,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    6.4,                     !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Return Air Fraction
+    0.59,                    !- Fraction Radiant
+    0.2,                     !- Fraction Visible
+    0,                       !- Fraction Replaceable
+    GeneralLights;           !- End-Use Subcategory
+
+  Lights,
+    EastZone Lights 1,       !- Name
+    EastZone,                !- Zone or ZoneList Name
+    LIGHTS-1,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    6.4,                     !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Return Air Fraction
+    0.59,                    !- Fraction Radiant
+    0.2,                     !- Fraction Visible
+    0,                       !- Fraction Replaceable
+    GeneralLights;           !- End-Use Subcategory
+
+  Lights,
+    NorthZone Lights 1,      !- Name
+    NorthZone,               !- Zone or ZoneList Name
+    LIGHTS-1,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    6.4,                     !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Return Air Fraction
+    0.59,                    !- Fraction Radiant
+    0.2,                     !- Fraction Visible
+    0,                       !- Fraction Replaceable
+    GeneralLights;           !- End-Use Subcategory
+
+  Lights,
+    WestZone Lights 1,       !- Name
+    WestZone,                !- Zone or ZoneList Name
+    LIGHTS-1,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    6.4,                     !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Return Air Fraction
+    0.59,                    !- Fraction Radiant
+    0.2,                     !- Fraction Visible
+    0,                       !- Fraction Replaceable
+    GeneralLights;           !- End-Use Subcategory
+
+  Lights,
+    InteriorZone Lights 1,   !- Name
+    InteriorZone,            !- Zone or ZoneList Name
+    LIGHTS-1,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    6.4,                     !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Return Air Fraction
+    0.59,                    !- Fraction Radiant
+    0.2,                     !- Fraction Visible
+    0,                       !- Fraction Replaceable
+    GeneralLights;           !- End-Use Subcategory
+
+!-   ===========  ALL OBJECTS IN CLASS: ELECTRICEQUIPMENT ===========
+
+  ElectricEquipment,
+    SouthZone ElecEq 1,      !- Name
+    SouthZone,               !- Zone or ZoneList Name
+    EQUIP-1,                 !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    10,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.3,                     !- Fraction Radiant
+    0;                       !- Fraction Lost
+
+  ElectricEquipment,
+    EastZone ElecEq 1,       !- Name
+    EastZone,                !- Zone or ZoneList Name
+    EQUIP-1,                 !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    10,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.3,                     !- Fraction Radiant
+    0;                       !- Fraction Lost
+
+  ElectricEquipment,
+    NorthZone ElecEq 1,      !- Name
+    NorthZone,               !- Zone or ZoneList Name
+    EQUIP-1,                 !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    10,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.3,                     !- Fraction Radiant
+    0;                       !- Fraction Lost
+
+  ElectricEquipment,
+    WestZone ElecEq 1,       !- Name
+    WestZone,                !- Zone or ZoneList Name
+    EQUIP-1,                 !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    10,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.3,                     !- Fraction Radiant
+    0;                       !- Fraction Lost
+
+  ElectricEquipment,
+    InteriorZone ElecEq 1,   !- Name
+    InteriorZone,            !- Zone or ZoneList Name
+    EQUIP-1,                 !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    10,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.3,                     !- Fraction Radiant
+    0;                       !- Fraction Lost
+
+!-   ===========  ALL OBJECTS IN CLASS: SHADING:SITE ===========
+
+  Shading:Site,
+    south sading,            !- Name
+    180,                     !- Azimuth Angle {deg}
+    90,                      !- Tilt Angle {deg}
+    -24,                     !- Starting X Coordinate {m}
+    -24,                     !- Starting Y Coordinate {m}
+    0,                       !- Starting Z Coordinate {m}
+    60,                      !- Length {m}
+    5;                       !- Height {m}
+
+  Shading:Site,
+    East sading,             !- Name
+    90,                      !- Azimuth Angle {deg}
+    90,                      !- Tilt Angle {deg}
+    -24,                     !- Starting X Coordinate {m}
+    -24,                     !- Starting Y Coordinate {m}
+    0,                       !- Starting Z Coordinate {m}
+    60,                      !- Length {m}
+    5;                       !- Height {m}
+
+  Shading:Site,
+    West sading,             !- Name
+    270,                     !- Azimuth Angle {deg}
+    90,                      !- Tilt Angle {deg}
+    36,                      !- Starting X Coordinate {m}
+    36,                      !- Starting Y Coordinate {m}
+    0,                       !- Starting Z Coordinate {m}
+    60,                      !- Length {m}
+    5;                       !- Height {m}
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:THERMOSTAT ===========
+
+  HVACTemplate:Thermostat,
+    thermostat,              !- Name
+    HeatingSetpoin,          !- Heating Setpoint Schedule Name
+    ,                        !- Constant Heating Setpoint {C}
+    CoolingSetpoint,         !- Cooling Setpoint Schedule Name
+    ;                        !- Constant Cooling Setpoint {C}
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:ZONE:IDEALLOADSAIRSYSTEM ===========
+
+  HVACTemplate:Zone:IdealLoadsAirSystem,
+    NorthZone,               !- Zone Name
+    thermostat,              !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,  !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60.0,                    !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30.0,                    !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    0.0,                     !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    0.0,                     !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    None;                    !- Demand Controlled Ventilation Type
+
+  HVACTemplate:Zone:IdealLoadsAirSystem,
+    SouthZone,               !- Zone Name
+    thermostat,              !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,  !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60.0,                    !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30.0,                    !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    0.0,                     !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    0.0,                     !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    None;                    !- Demand Controlled Ventilation Type
+
+  HVACTemplate:Zone:IdealLoadsAirSystem,
+    EastZone,                !- Zone Name
+    thermostat,              !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,  !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60.0,                    !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30.0,                    !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    0.0,                     !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    0.0,                     !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    None;                    !- Demand Controlled Ventilation Type
+
+  HVACTemplate:Zone:IdealLoadsAirSystem,
+    WestZone,                !- Zone Name
+    thermostat,              !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,  !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60.0,                    !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30.0,                    !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    0.0,                     !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    0.0,                     !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    None;                    !- Demand Controlled Ventilation Type
+
+  HVACTemplate:Zone:IdealLoadsAirSystem,
+    InteriorZone,            !- Zone Name
+    thermostat,              !- Template Thermostat Name
+    ,                        !- System Availability Schedule Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.0156,                  !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.0077,                  !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSensibleHeatRatio,  !- Dehumidification Control Type
+    0.7,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    60.0,                    !- Dehumidification Setpoint {percent}
+    None,                    !- Humidification Control Type
+    30.0,                    !- Humidification Setpoint {percent}
+    None,                    !- Outdoor Air Method
+    0.00944,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    0.0,                     !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    0.0,                     !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- Design Specification Outdoor Air Object Name
+    None;                    !- Demand Controlled Ventilation Type
+
+
+  ZoneInfiltration:DesignFlowRate,
+    SouthZone Infil,         !- Name
+    SouthZone,               !- Zone or ZoneList Name
+    AlwaysOn,                !- Schedule Name
+    flow/zone,               !- Design Flow Rate Calculation Method
+    %x0%,                !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+  ZoneInfiltration:DesignFlowRate,
+    NorthZone Infil,         !- Name
+    NorthZone,               !- Zone or ZoneList Name
+    AlwaysOn,                !- Schedule Name
+    flow/zone,               !- Design Flow Rate Calculation Method
+    %x0%,                !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+  ZoneInfiltration:DesignFlowRate,
+    EastZone Infil,          !- Name
+    EastZone,                !- Zone or ZoneList Name
+    AlwaysOn,                !- Schedule Name
+    flow/zone,               !- Design Flow Rate Calculation Method
+    %x0%,                !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+  ZoneInfiltration:DesignFlowRate,
+    WestZone Infil,          !- Name
+    WestZone,                !- Zone or ZoneList Name
+    AlwaysOn,                !- Schedule Name
+    flow/zone,               !- Design Flow Rate Calculation Method
+    %x0%,                !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+!- 5.744563,0.000000,3.000000, 0.000000,0.000000,3.000000, 0.000000,0.000000,0.000000, 5.744563,0.000000,0.000000;
+
+  BuildingSurface:Detailed,
+    NorthWall,               !- Name
+    Wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    NorthZone,               !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    SouthWall,               !- Name
+    Wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    SouthZone,               !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    EastWall,                !- Name
+    Wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    EastZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    WestWall,                !- Name
+    Wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    WestZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    South-East,              !- Name
+    Wall,                    !- Surface Type
+    partition,               !- Construction Name
+    SouthZone,               !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    EastZone,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi7_x%,%x1_pi7_y%,%x1_pi7_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi3_x%,%x1_pi3_y%,%x1_pi3_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    East-North,              !- Name
+    Wall,                    !- Surface Type
+    partition,               !- Construction Name
+    EastZone,                !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    NorthZone,               !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi8_x%,%x1_pi8_y%,%x1_pi8_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi4_x%,%x1_pi4_y%,%x1_pi4_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    North-West,              !- Name
+    Wall,                    !- Surface Type
+    partition,               !- Construction Name
+    NorthZone,               !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    WestZone,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi1_x%,%x1_pi1_y%,%x1_pi1_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi5_x%,%x1_pi5_y%,%x1_pi5_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    West-South,              !- Name
+    Wall,                    !- Surface Type
+    partition,               !- Construction Name
+    WestZone,                !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    SouthZone,               !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi6_x%,%x1_pi6_y%,%x1_pi6_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi2_x%,%x1_pi2_y%,%x1_pi2_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    SouthFloor,              !- Name
+    Floor,                   !- Surface Type
+    Floor,                   !- Construction Name
+    SouthZone,               !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi2_x%,%x1_pi2_y%,%x1_pi2_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi3_x%,%x1_pi3_y%,%x1_pi3_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    EastFloor,               !- Name
+    Floor,                   !- Surface Type
+    Floor,                   !- Construction Name
+    EastZone,                !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi3_x%,%x1_pi3_y%,%x1_pi3_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi4_x%,%x1_pi4_y%,%x1_pi4_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    NorthFloor,              !- Name
+    Floor,                   !- Surface Type
+    Floor,                   !- Construction Name
+    NorthZone,               !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi4_x%,%x1_pi4_y%,%x1_pi4_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi1_x%,%x1_pi1_y%,%x1_pi1_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    WestFloor,               !- Name
+    Floor,                   !- Surface Type
+    Floor,                   !- Construction Name
+    WestZone,                !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi1_x%,%x1_pi1_y%,%x1_pi1_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi2_x%,%x1_pi2_y%,%x1_pi2_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    SouthRoof,               !- Name
+    Roof,                    !- Surface Type
+    partition,               !- Construction Name
+    SouthZone,               !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    plenum,                  !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi7_x%,%x1_pi7_y%,%x1_pi7_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi6_x%,%x1_pi6_y%,%x1_pi6_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    EastRoof,                !- Name
+    Roof,                    !- Surface Type
+    partition,               !- Construction Name
+    EastZone,                !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    plenum,                  !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi8_x%,%x1_pi8_y%,%x1_pi8_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi7_x%,%x1_pi7_y%,%x1_pi7_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    NorthRoof,               !- Name
+    Roof,                    !- Surface Type
+    partition,               !- Construction Name
+    NorthZone,               !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    plenum,                  !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi5_x%,%x1_pi5_y%,%x1_pi5_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi8_x%,%x1_pi8_y%,%x1_pi8_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    WestRoof,                !- Name
+    Roof,                    !- Surface Type
+    partition,               !- Construction Name
+    WestZone,                !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    plenum,                  !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi6_x%,%x1_pi6_y%,%x1_pi6_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi5_x%,%x1_pi5_y%,%x1_pi5_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    InteriorRoof,            !- Name
+    Roof,                    !- Surface Type
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    plenum,                  !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_pi5_x%,%x1_pi5_y%,%x1_pi5_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_pi6_x%,%x1_pi6_y%,%x1_pi6_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi7_x%,%x1_pi7_y%,%x1_pi7_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi8_x%,%x1_pi8_y%,%x1_pi8_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    InteriorFloor,           !- Name
+    Floor,                   !- Surface Type
+    Floor,                   !- Construction Name
+    InteriorZone,            !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_pi4_x%,%x1_pi4_y%,%x1_pi4_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_pi3_x%,%x1_pi3_y%,%x1_pi3_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi2_x%,%x1_pi2_y%,%x1_pi2_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi1_x%,%x1_pi1_y%,%x1_pi1_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    NorthInterior,           !- Name
+    wall,                    !- Surface Type
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    northZone,               !- Outside Boundary Condition Object
+    nosun,                   !- Sun Exposure
+    nowind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_pi1_x%,%x1_pi1_y%,%x1_pi1_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_pi5_x%,%x1_pi5_y%,%x1_pi5_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi8_x%,%x1_pi8_y%,%x1_pi8_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi4_x%,%x1_pi4_y%,%x1_pi4_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    SouthInterior,           !- Name
+    wall,                    !- Surface Type
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    SouthZone,               !- Outside Boundary Condition Object
+    nosun,                   !- Sun Exposure
+    nowind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_pi2_x%,%x1_pi2_y%,%x1_pi2_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_pi3_x%,%x1_pi3_y%,%x1_pi3_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_pi7_x%,%x1_pi7_y%,%x1_pi7_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_pi6_x%,%x1_pi6_y%,%x1_pi6_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    EastInterior,            !- Name
+    wall,                    !- Surface Type
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    EastZone,                !- Outside Boundary Condition Object
+    nosun,                   !- Sun Exposure
+    nowind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p3_x%,%x1_p3_y%,%x1_p3_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p4_x%,%x1_p4_y%,%x1_p4_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    WestInterior,            !- Name
+    wall,                    !- Surface Type
+    partition,               !- Construction Name
+    InteriorZone,            !- Zone Name
+    zone,                    !- Outside Boundary Condition
+    WestZone,                !- Outside Boundary Condition Object
+    nosun,                   !- Sun Exposure
+    nowind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p1_x%,%x1_p1_y%,%x1_p1_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p2_x%,%x1_p2_y%,%x1_p2_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    PlenumSouth,             !- Name
+    wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    plenum,                  !- Zone Name
+    outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    windExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p11_x%,%x1_p11_y%,%x1_p11_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p10_x%,%x1_p10_y%,%x1_p10_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    PlenumEast,              !- Name
+    wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    plenum,                  !- Zone Name
+    outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    windExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p7_x%,%x1_p7_y%,%x1_p7_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p12_x%,%x1_p12_y%,%x1_p12_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p11_x%,%x1_p11_y%,%x1_p11_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    PlenumNorth,             !- Name
+    wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    plenum,                  !- Zone Name
+    outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    windExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p8_x%,%x1_p8_y%,%x1_p8_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p9_x%,%x1_p9_y%,%x1_p9_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p12_x%,%x1_p12_y%,%x1_p12_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    PlenumWest,              !- Name
+    wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    plenum,                  !- Zone Name
+    outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    windExposed,             !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p10_x%,%x1_p10_y%,%x1_p10_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p9_x%,%x1_p9_y%,%x1_p9_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p5_x%,%x1_p5_y%,%x1_p5_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p6_x%,%x1_p6_y%,%x1_p6_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    PlenumRoof,              !- Name
+    wall,                    !- Surface Type
+    %x7%,                    !- Construction Name
+    plenum,                  !- Zone Name
+    adiabatic,               !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    nosun,                   !- Sun Exposure
+    nowind,                  !- Wind Exposure
+    0.5,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %x1_p9_x%,%x1_p9_y%,%x1_p9_z%,  !- X,Y,Z ==> Vertex 1 {m}
+    %x1_p10_x%,%x1_p10_y%,%x1_p10_z%,  !- X,Y,Z ==> Vertex 2 {m}
+    %x1_p11_x%,%x1_p11_y%,%x1_p11_z%,  !- X,Y,Z ==> Vertex 3 {m}
+    %x1_p12_x%,%x1_p12_y%,%x1_p12_z%;  !- X,Y,Z ==> Vertex 4 {m}
+
+  Window,
+    NorthWindow,             !- Name
+    Window,                  !- Construction Name
+    NorthWall,               !- Building Surface Name
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    %x3_xstart%,                !- Starting X Coordinate {m}
+    %x3_zstart%,                !- Starting Z Coordinate {m}
+    %x3_length%,                !- Length {m}
+    %x3_height%;                !- Height {m}
+
+  Window,
+    SouthWindow,             !- Name
+    Window,                  !- Construction Name
+    SouthWall,               !- Building Surface Name
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    %x4_xstart%,                !- Starting X Coordinate {m}
+    %x4_zstart%,                !- Starting Z Coordinate {m}
+    %x4_length%,                !- Length {m}
+    %x4_height%;                !- Height {m}
+
+  Window,
+    EastWindow,              !- Name
+    Window,                  !- Construction Name
+    EastWall,                !- Building Surface Name
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    %x5_xstart%,                !- Starting X Coordinate {m}
+    %x5_zstart%,                !- Starting Z Coordinate {m}
+    %x5_length%,                !- Length {m}
+    %x5_height%;                !- Height {m}
+
+  Window,
+    WestWindow,              !- Name
+    Window,                  !- Construction Name
+    WestWall,                !- Building Surface Name
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1,                       !- Multiplier
+    %x6_xstart%,                !- Starting X Coordinate {m}
+    %x6_zstart%,                !- Starting Z Coordinate {m}
+    %x6_length%,                !- Length {m}
+    %x6_height%;                !- Height {m}
+
+  WindowMaterial:SimpleGlazingSystem,
+    windows,                 !- Name
+    %x2%,                !- U-Factor {W/m2-K}
+    0.92;                    !- Solar Heat Gain Coefficient
+
+  Shading:Overhang,
+    overhangSouth,           !- Name
+    SouthWindow,             !- Window or Door Name
+    0,                       !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    %x12%,                !- Left extension from Window/Door Width {m}
+    %x13%,                !- Right extension from Window/Door Width {m}
+    %x11%;                !- Depth {m}
+
+  Shading:Overhang,
+    overhangEast,            !- Name
+    EastWindow,              !- Window or Door Name
+    0,                       !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    %x15%,                !- Left extension from Window/Door Width {m}
+    %x16%,                !- Right extension from Window/Door Width {m}
+    %x14%;                !- Depth {m}
+
+  Shading:Overhang,
+    overhangWest,            !- Name
+    Westwindow,              !- Window or Door Name
+    0,                       !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    %x18%,                !- Left extension from Window/Door Width {m}
+    %x19%,                !- Right extension from Window/Door Width {m}
+    %x17%;                !- Depth {m}
+
+
+  Construction,
+	Wall_1,							!- Name
+	M15 200mm heavyweight concrete,	!- Outside Layer
+	insulation,						!- Layer 2
+	F07 25mm stucco;				!- Layer 3
+      
+  Construction,
+	Wall_2,							!- Name
+	M15 200mm heavyweight concrete,	!- Outside Layer
+	insulation,						!- Layer 2
+	M15 200mm heavyweight concrete;	!- Layer 3
+
+  Construction,
+	Wall_3,							!- Name
+	F07 25mm stucco,				!- Outside Layer
+	insulation,						!- Layer 2
+	M15 200mm heavyweight concrete;	!- Layer 3
+
+  Construction,
+	Wall_4,							!- Name
+	F07 25mm stucco,				!- Outside Layer
+	insulation,						!- Layer 2
+	F07 25mm stucco;				!- Layer 3
+        
+		
+  Material,
+    insulation,              !- Name
+    Rough,                   !- Roughness
+    %x8%,                !- Thickness {m}
+    0.05,                    !- Conductivity {W/m-K}
+    19,                      !- Density {kg/m3}
+    960,                     !- Specific Heat {J/kg-K}
+    ,                        !- Thermal Absorptance
+    ,                        !- Solar Absorptance
+    ;                        !- Visible Absorptance
+
+  Material,
+    Partitions,              !- Name
+    Rough,                   !- Roughness
+    .2,                      !- Thickness {m}
+    %x9%,                !- Conductivity {W/m-K}
+    1000,                    !- Density {kg/m3}
+    %x10%;             !- Specific Heat {J/kg-K}
+
+	!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLEDICTIONARY ===========
+
+!  Output:VariableDictionary,Regular;
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SURFACES:LIST ===========
+
+ ! Output:Surfaces:List,Details;
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SURFACES:DRAWING ===========
+
+  !Output:Surfaces:Drawing,VRML;
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:TABLE:SUMMARYREPORTS ===========
+
+  Output:Table:SummaryReports,
+    AllSummary;              !- Report 1 Name
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUTCONTROL:TABLE:STYLE ===========
+
+  OutputControl:Table:Style,
+    Comma;                    !- Column Separator
+
+  Output:Meter,DistrictHeating:Facility,runperiod;
+
+  Output:Meter,DistrictCooling:Facility,runperiod;
+
+

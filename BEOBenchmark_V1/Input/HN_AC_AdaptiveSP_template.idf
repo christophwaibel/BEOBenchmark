@@ -1,0 +1,2718 @@
+!-Generator IDFEditor 1.38a
+!-Option OriginalOrderTop UseSpecialFormat
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+
+  Site:GroundTemperature:Shallow,18.5,17.97,18.92,20.39,24.26,27.24,29.25,29.86,28.82,26.51,23.41,20.54;
+
+  Site:WeatherStation,
+    10,                      !- Wind Sensor Height Above Ground {m}
+    0.14,                    !- Wind Speed Profile Exponent
+    270,                     !- Wind Speed Profile Boundary Layer Thickness {m}
+    1.5;                     !- Air Temperature Sensor Height Above Ground {m}
+
+  LifeCycleCost:RecurringCosts,
+    EquipmentCost,           !- Name
+    Replacement,             !- Category
+    400,                     !- Cost
+    ServicePeriod,           !- Start of Costs
+    10,                      !- Years from Start
+    ,                        !- Months from Start
+    10,                      !- Repeat Period Years
+    ,                        !- Repeat Period Months
+    0;                       !- Annual escalation rate
+
+  UtilityCost:Tariff,
+    MonthlyServiceCharge,    !- Name
+    EnergyTransfer:Building, !- Output Meter Name
+    kWh,                     !- Conversion Factor Choice
+    ,                        !- Energy Conversion Factor
+    ,                        !- Demand Conversion Factor
+    ,                        !- Time of Use Period Schedule Name
+    ,                        !- Season Schedule Name
+    ,                        !- Month Schedule Name
+    ,                        !- Demand Window Length
+    0.7;                     !- Monthly Charge or Variable Name
+
+  UtilityCost:Charge:Simple,
+    VAT,                     !- Name
+    MonthlyServiceCharge,    !- Tariff Name
+    SubTotal,                !- Source Variable
+    Annual,                  !- Season
+    Taxes,                   !- Category Variable Name
+    0.1;                     !- Cost per Unit Value or Variable Name
+
+  UtilityCost:Charge:Simple,
+    EnergyCost,              !- Name
+    MonthlyServiceCharge,    !- Tariff Name
+    TotalEnergy,             !- Source Variable
+    Annual,                  !- Season
+    EnergyCharges,           !- Category Variable Name
+    0.0728155;               !- Cost per Unit Value or Variable Name
+
+  LifeCycleCost:Parameters,
+    LCCAParameter,           !- Name
+    EndOfYear,               !- Discounting Convention
+    CurrentDollar,           !- Inflation Approach
+    ,                        !- Real Discount Rate
+    0.01,                    !- Nominal Discount Rate
+    0.025,                   !- Inflation
+    January,                 !- Base Date Month
+    2011,                    !- Base Date Year
+    January,                 !- Service Date Month
+    2011,                    !- Service Date Year
+    50,                      !- Length of Study Period in Years
+    0,                       !- Tax rate
+    None;                    !- Depreciation Method
+
+  LifeCycleCost:RecurringCosts,
+    MaintenanceCost,         !- Name
+    Maintenance,             !- Category
+    250,                     !- Cost
+    ServicePeriod,           !- Start of Costs
+    0,                       !- Years from Start
+    0,                       !- Months from Start
+    2,                       !- Repeat Period Years
+    0,                       !- Repeat Period Months
+    0;                       !- Annual escalation rate
+
+  LifeCycleCost:NonrecurringCost,
+    SalvageEquipments1,      !- Name
+    Salvage,                 !- Category
+    -50,                     !- Cost
+    BasePeriod,              !- Start of Costs
+    10;                      !- Years from Start
+
+  LifeCycleCost:UsePriceEscalation,
+    Electricity escalation VN,  !- Name
+    Electricity,             !- Resource
+    2010,                    !- Escalation Start Year
+    January,                 !- Escalation Start Month
+    0.9602,                  !- Year 1 Escalation
+    0.9784,                  !- Year 2 Escalation
+    0.9960,                  !- Year 3 Escalation
+    0.9983,                  !- Year 4 Escalation
+    0.9970,                  !- Year 5 Escalation
+    1.0030,                  !- Year 6 Escalation
+    1.0109,                  !- Year 7 Escalation
+    1.0123,                  !- Year 8 Escalation
+    1.0083,                  !- Year 9 Escalation
+    1.0106,                  !- Year 10 Escalation
+    1.0146,                  !- Year 11 Escalation
+    1.0163,                  !- Year 12 Escalation
+    1.0186,                  !- Year 13 Escalation
+    1.0232,                  !- Year 14 Escalation
+    1.0259,                  !- Year 15 Escalation
+    1.0295,                  !- Year 16 Escalation
+    1.0348,                  !- Year 17 Escalation
+    1.0398,                  !- Year 18 Escalation
+    1.0524,                  !- Year 19 Escalation
+    1.0657,                  !- Year 20 Escalation
+    1.0790,                  !- Year 21 Escalation
+    1.0906,                  !- Year 22 Escalation
+    1.0975,                  !- Year 23 Escalation
+    1.1042,                  !- Year 24 Escalation
+    1.1115,                  !- Year 25 Escalation
+    1.1188,                  !- Year 26 Escalation
+    1.1257,                  !- Year 27 Escalation
+    1.1330,                  !- Year 28 Escalation
+    1.1403,                  !- Year 29 Escalation
+    1.1476;                  !- Year 30 Escalation
+
+  Output:Table:Monthly,
+    H-C SP not met,          !- Name
+    2,                       !- Digits After Decimal
+    Zone Heating Setpoint Not Met Time,  !- Variable or Meter 1 Name
+    SumOrAverage,            !- Aggregation Type for Variable or Meter 1
+    Site Snow on Ground Status,  !- Variable or Meter 2 Name
+    Maximum,                 !- Aggregation Type for Variable or Meter 2
+    Zone Cooling Setpoint Not Met Time,  !- Variable or Meter 3 Name
+    SumOrAverage;            !- Aggregation Type for Variable or Meter 3
+
+  ScheduleTypeLimits,
+    Any Number;              !- Name
+
+  ComponentCost:LineItem,
+    Cost100,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    100,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    20;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost110,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    110,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    26;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost101,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    101,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    26.5;                    !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost111,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    111,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    31;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost102,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    102,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    33;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost112,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    112,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    35;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost103,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    103,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    38;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost200,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    200,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    45;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost201,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    201,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    70;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost210,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    210,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    140;                     !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost202,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    202,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    220;                     !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost300,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    300,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    45;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost310,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    310,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    49;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost301,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    301,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    52;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost311,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    311,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    55;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost302,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    302,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    58;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost500,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    500,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    34;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost501,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    501,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    39;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost510,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    510,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    41;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost502,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    502,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    43;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost600,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    600,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    20;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost601,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    601,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    26;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost610,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    610,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    31;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    Cost602,                 !- Name
+    ,                        !- Type
+    Construction,            !- Line Item Type
+    602,                     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    36.5;                    !- Cost per Area {$/m2}
+
+  ZoneHVAC:EquipmentList,
+    Zone1 Equipment,         !- Name
+    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
+    Central AHU,             !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    Zone1,                   !- Zone Name
+    Zone1 Equipment,         !- Zone Conditioning Equipment List Name
+    Zone1 Supply Inlet,      !- Zone Air Inlet Node or NodeList Name
+    ,                        !- Zone Air Exhaust Node or NodeList Name
+    Zone1 Zone Air Node,     !- Zone Air Node Name
+    Zone1 Return Outlet;     !- Zone Return Air Node Name
+
+  ZoneHVAC:IdealLoadsAirSystem,
+    Central AHU,             !- Name
+    ,                        !- Availability Schedule Name
+    Zone1 Supply Inlet,      !- Zone Supply Air Node Name
+    ,                        !- Zone Exhaust Air Node Name
+    50,                      !- Maximum Heating Supply Air Temperature {C}
+    13,                      !- Minimum Cooling Supply Air Temperature {C}
+    0.015,                   !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.01,                    !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    ConstantSupplyHumidityRatio,  !- Dehumidification Control Type
+    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
+    ConstantSupplyHumidityRatio,  !- Humidification Control Type
+    ,                        !- Design Specification Outdoor Air Object Name
+    ,                        !- Outdoor Air Inlet Node Name
+    ,                        !- Demand Controlled Ventilation Type
+    ,                        !- Outdoor Air Economizer Type
+    ,                        !- Heat Recovery Type
+    ,                        !- Sensible Heat Recovery Effectiveness {dimensionless}
+    ;                        !- Latent Heat Recovery Effectiveness {dimensionless}
+
+  Schedule:Week:Compact,
+    Low ACweek Jan,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACdayJan;            !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Feb,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Feb;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Mar,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Mar;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Apr,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Apr;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek May,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday May;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Jun,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Jun;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Jul,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday July;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Aug,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Aug;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Sep,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Sep;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Oct,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Oct;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Nov,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Nov;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    Low ACweek Dec,          !- Name
+    AllDays,                 !- DayType List 1
+    Low ACday Dec;           !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Jan,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Jan;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Feb,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Feb;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Mar,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Mar;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Apr,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Apr;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek May,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday May;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Jun,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Jun;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Jul,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Jul;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Aug,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Aug;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Sep,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Sep;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Oct,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Oct;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Nov,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Nov;          !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    High ACweek Dec,         !- Name
+    AllDays,                 !- DayType List 1
+    High ACday Dec;          !- Schedule:Day Name 1
+
+  Schedule:Compact,
+    ALWAYS 4,                !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,4;          !- Field 3
+
+  ZoneControl:Thermostat,
+    Zone1 Thermostat,        !- Name
+    Zone1,                   !- Zone or ZoneList Name
+    ALWAYS 4,                !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+    Office Thermostat Dual SP Control;  !- Control 1 Name
+
+  ThermostatSetpoint:DualSetpoint,
+    Office Thermostat Dual SP Control,  !- Name
+    Heating setpoint,        !- Heating Setpoint Temperature Schedule Name
+    Cooling setpoint;        !- Cooling Setpoint Temperature Schedule Name
+
+  Schedule:Year,
+    Heating setpoint,        !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Low ACweek Jan,          !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    1,                       !- End Month 1
+    31,                      !- End Day 1
+    Low ACweek Feb,          !- Schedule:Week Name 2
+    2,                       !- Start Month 2
+    1,                       !- Start Day 2
+    2,                       !- End Month 2
+    28,                      !- End Day 2
+    Low ACweek Mar,          !- Schedule:Week Name 3
+    3,                       !- Start Month 3
+    1,                       !- Start Day 3
+    3,                       !- End Month 3
+    31,                      !- End Day 3
+    Low ACweek Apr,          !- Schedule:Week Name 4
+    4,                       !- Start Month 4
+    1,                       !- Start Day 4
+    4,                       !- End Month 4
+    30,                      !- End Day 4
+    Low ACweek May,          !- Schedule:Week Name 5
+    5,                       !- Start Month 5
+    1,                       !- Start Day 5
+    5,                       !- End Month 5
+    31,                      !- End Day 5
+    Low ACweek Jun,          !- Schedule:Week Name 6
+    6,                       !- Start Month 6
+    1,                       !- Start Day 6
+    6,                       !- End Month 6
+    30,                      !- End Day 6
+    Low ACweek Jul,          !- Schedule:Week Name 7
+    7,                       !- Start Month 7
+    1,                       !- Start Day 7
+    7,                       !- End Month 7
+    31,                      !- End Day 7
+    Low ACweek Aug,          !- Schedule:Week Name 8
+    8,                       !- Start Month 8
+    1,                       !- Start Day 8
+    8,                       !- End Month 8
+    31,                      !- End Day 8
+    Low ACweek Sep,          !- Schedule:Week Name 9
+    9,                       !- Start Month 9
+    1,                       !- Start Day 9
+    9,                       !- End Month 9
+    30,                      !- End Day 9
+    Low ACweek Oct,          !- Schedule:Week Name 10
+    10,                      !- Start Month 10
+    1,                       !- Start Day 10
+    10,                      !- End Month 10
+    31,                      !- End Day 10
+    Low ACweek Nov,          !- Schedule:Week Name 11
+    11,                      !- Start Month 11
+    1,                       !- Start Day 11
+    11,                      !- End Month 11
+    30,                      !- End Day 11
+    Low ACweek Dec,          !- Schedule:Week Name 12
+    12,                      !- Start Month 12
+    1,                       !- Start Day 12
+    12,                      !- End Month 12
+    31;                      !- End Day 12
+
+  Schedule:Year,
+    Cooling setpoint,        !- Name
+    Any Number,              !- Schedule Type Limits Name
+    High ACweek Jan,         !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    1,                       !- End Month 1
+    31,                      !- End Day 1
+    High ACweek Feb,         !- Schedule:Week Name 2
+    2,                       !- Start Month 2
+    1,                       !- Start Day 2
+    2,                       !- End Month 2
+    28,                      !- End Day 2
+    High ACweek Mar,         !- Schedule:Week Name 3
+    3,                       !- Start Month 3
+    1,                       !- Start Day 3
+    3,                       !- End Month 3
+    31,                      !- End Day 3
+    High ACweek Apr,         !- Schedule:Week Name 4
+    4,                       !- Start Month 4
+    1,                       !- Start Day 4
+    4,                       !- End Month 4
+    30,                      !- End Day 4
+    High ACweek May,         !- Schedule:Week Name 5
+    5,                       !- Start Month 5
+    1,                       !- Start Day 5
+    5,                       !- End Month 5
+    31,                      !- End Day 5
+    High ACweek Jun,         !- Schedule:Week Name 6
+    6,                       !- Start Month 6
+    1,                       !- Start Day 6
+    6,                       !- End Month 6
+    30,                      !- End Day 6
+    High ACweek Jul,         !- Schedule:Week Name 7
+    7,                       !- Start Month 7
+    1,                       !- Start Day 7
+    7,                       !- End Month 7
+    31,                      !- End Day 7
+    High ACweek Aug,         !- Schedule:Week Name 8
+    8,                       !- Start Month 8
+    1,                       !- Start Day 8
+    8,                       !- End Month 8
+    31,                      !- End Day 8
+    High ACweek Sep,         !- Schedule:Week Name 9
+    9,                       !- Start Month 9
+    1,                       !- Start Day 9
+    9,                       !- End Month 9
+    30,                      !- End Day 9
+    High ACweek Oct,         !- Schedule:Week Name 10
+    10,                      !- Start Month 10
+    1,                       !- Start Day 10
+    10,                      !- End Month 10
+    31,                      !- End Day 10
+    High ACweek Nov,         !- Schedule:Week Name 11
+    11,                      !- Start Month 11
+    1,                       !- Start Day 11
+    11,                      !- End Month 11
+    30,                      !- End Day 11
+    High ACweek Dec,         !- Schedule:Week Name 12
+    12,                      !- Start Month 12
+    1,                       !- Start Day 12
+    12,                      !- End Month 12
+    31;                      !- End Day 12
+
+  Schedule:Day:Hourly,
+    Low ACdayJan,            !- Name
+    Any Number,              !- Schedule Type Limits Name
+    21.4,                    !- Hour 1
+    21.4,                    !- Hour 2
+    21.4,                    !- Hour 3
+    21.4,                    !- Hour 4
+    21.4,                    !- Hour 5
+    21.4,                    !- Hour 6
+    21.4,                    !- Hour 7
+    21.4,                    !- Hour 8
+    21.4,                    !- Hour 9
+    21.4,                    !- Hour 10
+    21.4,                    !- Hour 11
+    21.4,                    !- Hour 12
+    21.4,                    !- Hour 13
+    21.4,                    !- Hour 14
+    21.4,                    !- Hour 15
+    21.4,                    !- Hour 16
+    21.4,                    !- Hour 17
+    21.4,                    !- Hour 18
+    21.4,                    !- Hour 19
+    21.4,                    !- Hour 20
+    21.4,                    !- Hour 21
+    21.4,                    !- Hour 22
+    21.4,                    !- Hour 23
+    21.4;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Feb,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    21.7,                    !- Hour 1
+    21.7,                    !- Hour 2
+    21.7,                    !- Hour 3
+    21.7,                    !- Hour 4
+    21.7,                    !- Hour 5
+    21.7,                    !- Hour 6
+    21.7,                    !- Hour 7
+    21.7,                    !- Hour 8
+    21.7,                    !- Hour 9
+    21.7,                    !- Hour 10
+    21.7,                    !- Hour 11
+    21.7,                    !- Hour 12
+    21.7,                    !- Hour 13
+    21.7,                    !- Hour 14
+    21.7,                    !- Hour 15
+    21.7,                    !- Hour 16
+    21.7,                    !- Hour 17
+    21.7,                    !- Hour 18
+    21.7,                    !- Hour 19
+    21.7,                    !- Hour 20
+    21.7,                    !- Hour 21
+    21.7,                    !- Hour 22
+    21.7,                    !- Hour 23
+    21.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Mar,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    22.7,                    !- Hour 1
+    22.7,                    !- Hour 2
+    22.7,                    !- Hour 3
+    22.7,                    !- Hour 4
+    22.7,                    !- Hour 5
+    22.7,                    !- Hour 6
+    22.7,                    !- Hour 7
+    22.7,                    !- Hour 8
+    22.7,                    !- Hour 9
+    22.7,                    !- Hour 10
+    22.7,                    !- Hour 11
+    22.7,                    !- Hour 12
+    22.7,                    !- Hour 13
+    22.7,                    !- Hour 14
+    22.7,                    !- Hour 15
+    22.7,                    !- Hour 16
+    22.7,                    !- Hour 17
+    22.7,                    !- Hour 18
+    22.7,                    !- Hour 19
+    22.7,                    !- Hour 20
+    22.7,                    !- Hour 21
+    22.7,                    !- Hour 22
+    22.7,                    !- Hour 23
+    22.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Apr,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    24,                      !- Hour 1
+    24,                      !- Hour 2
+    24,                      !- Hour 3
+    24,                      !- Hour 4
+    24,                      !- Hour 5
+    24,                      !- Hour 6
+    24,                      !- Hour 7
+    24,                      !- Hour 8
+    24,                      !- Hour 9
+    24,                      !- Hour 10
+    24,                      !- Hour 11
+    24,                      !- Hour 12
+    24,                      !- Hour 13
+    24,                      !- Hour 14
+    24,                      !- Hour 15
+    24,                      !- Hour 16
+    24,                      !- Hour 17
+    24,                      !- Hour 18
+    24,                      !- Hour 19
+    24,                      !- Hour 20
+    24,                      !- Hour 21
+    24,                      !- Hour 22
+    24,                      !- Hour 23
+    24;                      !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday May,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    25.2,                    !- Hour 1
+    25.2,                    !- Hour 2
+    25.2,                    !- Hour 3
+    25.2,                    !- Hour 4
+    25.2,                    !- Hour 5
+    25.2,                    !- Hour 6
+    25.2,                    !- Hour 7
+    25.2,                    !- Hour 8
+    25.2,                    !- Hour 9
+    25.2,                    !- Hour 10
+    25.2,                    !- Hour 11
+    25.2,                    !- Hour 12
+    25.2,                    !- Hour 13
+    25.2,                    !- Hour 14
+    25.2,                    !- Hour 15
+    25.2,                    !- Hour 16
+    25.2,                    !- Hour 17
+    25.2,                    !- Hour 18
+    25.2,                    !- Hour 19
+    25.2,                    !- Hour 20
+    25.2,                    !- Hour 21
+    25.2,                    !- Hour 22
+    25.2,                    !- Hour 23
+    25.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Jun,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    25.7,                    !- Hour 1
+    25.7,                    !- Hour 2
+    25.7,                    !- Hour 3
+    25.7,                    !- Hour 4
+    25.7,                    !- Hour 5
+    25.7,                    !- Hour 6
+    25.7,                    !- Hour 7
+    25.7,                    !- Hour 8
+    25.7,                    !- Hour 9
+    25.7,                    !- Hour 10
+    25.7,                    !- Hour 11
+    25.7,                    !- Hour 12
+    25.7,                    !- Hour 13
+    25.7,                    !- Hour 14
+    25.7,                    !- Hour 15
+    25.7,                    !- Hour 16
+    25.7,                    !- Hour 17
+    25.7,                    !- Hour 18
+    25.7,                    !- Hour 19
+    25.7,                    !- Hour 20
+    25.7,                    !- Hour 21
+    25.7,                    !- Hour 22
+    25.7,                    !- Hour 23
+    25.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday July,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    25.8,                    !- Hour 1
+    25.8,                    !- Hour 2
+    25.8,                    !- Hour 3
+    25.8,                    !- Hour 4
+    25.8,                    !- Hour 5
+    25.8,                    !- Hour 6
+    25.8,                    !- Hour 7
+    25.8,                    !- Hour 8
+    25.8,                    !- Hour 9
+    25.8,                    !- Hour 10
+    25.8,                    !- Hour 11
+    25.8,                    !- Hour 12
+    25.8,                    !- Hour 13
+    25.8,                    !- Hour 14
+    25.8,                    !- Hour 15
+    25.8,                    !- Hour 16
+    25.8,                    !- Hour 17
+    25.8,                    !- Hour 18
+    25.8,                    !- Hour 19
+    25.8,                    !- Hour 20
+    25.8,                    !- Hour 21
+    25.8,                    !- Hour 22
+    25.8,                    !- Hour 23
+    25.8;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Aug,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    25.6,                    !- Hour 1
+    25.6,                    !- Hour 2
+    25.6,                    !- Hour 3
+    25.6,                    !- Hour 4
+    25.6,                    !- Hour 5
+    25.6,                    !- Hour 6
+    25.6,                    !- Hour 7
+    25.6,                    !- Hour 8
+    25.6,                    !- Hour 9
+    25.6,                    !- Hour 10
+    25.6,                    !- Hour 11
+    25.6,                    !- Hour 12
+    25.6,                    !- Hour 13
+    25.6,                    !- Hour 14
+    25.6,                    !- Hour 15
+    25.6,                    !- Hour 16
+    25.6,                    !- Hour 17
+    25.6,                    !- Hour 18
+    25.6,                    !- Hour 19
+    25.6,                    !- Hour 20
+    25.6,                    !- Hour 21
+    25.6,                    !- Hour 22
+    25.6,                    !- Hour 23
+    25.6;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Sep,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    25.2,                    !- Hour 1
+    25.2,                    !- Hour 2
+    25.2,                    !- Hour 3
+    25.2,                    !- Hour 4
+    25.2,                    !- Hour 5
+    25.2,                    !- Hour 6
+    25.2,                    !- Hour 7
+    25.2,                    !- Hour 8
+    25.2,                    !- Hour 9
+    25.2,                    !- Hour 10
+    25.2,                    !- Hour 11
+    25.2,                    !- Hour 12
+    25.2,                    !- Hour 13
+    25.2,                    !- Hour 14
+    25.2,                    !- Hour 15
+    25.2,                    !- Hour 16
+    25.2,                    !- Hour 17
+    25.2,                    !- Hour 18
+    25.2,                    !- Hour 19
+    25.2,                    !- Hour 20
+    25.2,                    !- Hour 21
+    25.2,                    !- Hour 22
+    25.2,                    !- Hour 23
+    25.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Oct,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    24.3,                    !- Hour 1
+    24.3,                    !- Hour 2
+    24.3,                    !- Hour 3
+    24.3,                    !- Hour 4
+    24.3,                    !- Hour 5
+    24.3,                    !- Hour 6
+    24.3,                    !- Hour 7
+    24.3,                    !- Hour 8
+    24.3,                    !- Hour 9
+    24.3,                    !- Hour 10
+    24.3,                    !- Hour 11
+    24.3,                    !- Hour 12
+    24.3,                    !- Hour 13
+    24.3,                    !- Hour 14
+    24.3,                    !- Hour 15
+    24.3,                    !- Hour 16
+    24.3,                    !- Hour 17
+    24.3,                    !- Hour 18
+    24.3,                    !- Hour 19
+    24.3,                    !- Hour 20
+    24.3,                    !- Hour 21
+    24.3,                    !- Hour 22
+    24.3,                    !- Hour 23
+    24.3;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Nov,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    23.2,                    !- Hour 1
+    23.2,                    !- Hour 2
+    23.2,                    !- Hour 3
+    23.2,                    !- Hour 4
+    23.2,                    !- Hour 5
+    23.2,                    !- Hour 6
+    23.2,                    !- Hour 7
+    23.2,                    !- Hour 8
+    23.2,                    !- Hour 9
+    23.2,                    !- Hour 10
+    23.2,                    !- Hour 11
+    23.2,                    !- Hour 12
+    23.2,                    !- Hour 13
+    23.2,                    !- Hour 14
+    23.2,                    !- Hour 15
+    23.2,                    !- Hour 16
+    23.2,                    !- Hour 17
+    23.2,                    !- Hour 18
+    23.2,                    !- Hour 19
+    23.2,                    !- Hour 20
+    23.2,                    !- Hour 21
+    23.2,                    !- Hour 22
+    23.2,                    !- Hour 23
+    23.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    Low ACday Dec,           !- Name
+    Any Number,              !- Schedule Type Limits Name
+    22.0,                    !- Hour 1
+    22.0,                    !- Hour 2
+    22.0,                    !- Hour 3
+    22.0,                    !- Hour 4
+    22.0,                    !- Hour 5
+    22.0,                    !- Hour 6
+    22.0,                    !- Hour 7
+    22.0,                    !- Hour 8
+    22.0,                    !- Hour 9
+    22.0,                    !- Hour 10
+    22.0,                    !- Hour 11
+    22.0,                    !- Hour 12
+    22.0,                    !- Hour 13
+    22.0,                    !- Hour 14
+    22.0,                    !- Hour 15
+    22.0,                    !- Hour 16
+    22.0,                    !- Hour 17
+    22.0,                    !- Hour 18
+    22.0,                    !- Hour 19
+    22.0,                    !- Hour 20
+    22.0,                    !- Hour 21
+    22.0,                    !- Hour 22
+    22.0,                    !- Hour 23
+    22.0;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Jan,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    27.4,                    !- Hour 1
+    27.4,                    !- Hour 2
+    27.4,                    !- Hour 3
+    27.4,                    !- Hour 4
+    27.4,                    !- Hour 5
+    27.4,                    !- Hour 6
+    27.4,                    !- Hour 7
+    27.4,                    !- Hour 8
+    27.4,                    !- Hour 9
+    27.4,                    !- Hour 10
+    27.4,                    !- Hour 11
+    27.4,                    !- Hour 12
+    27.4,                    !- Hour 13
+    27.4,                    !- Hour 14
+    27.4,                    !- Hour 15
+    27.4,                    !- Hour 16
+    27.4,                    !- Hour 17
+    27.4,                    !- Hour 18
+    27.4,                    !- Hour 19
+    27.4,                    !- Hour 20
+    27.4,                    !- Hour 21
+    27.4,                    !- Hour 22
+    27.4,                    !- Hour 23
+    27.4;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Feb,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    27.7,                    !- Hour 1
+    27.7,                    !- Hour 2
+    27.7,                    !- Hour 3
+    27.7,                    !- Hour 4
+    27.7,                    !- Hour 5
+    27.7,                    !- Hour 6
+    27.7,                    !- Hour 7
+    27.7,                    !- Hour 8
+    27.7,                    !- Hour 9
+    27.7,                    !- Hour 10
+    27.7,                    !- Hour 11
+    27.7,                    !- Hour 12
+    27.7,                    !- Hour 13
+    27.7,                    !- Hour 14
+    27.7,                    !- Hour 15
+    27.7,                    !- Hour 16
+    27.7,                    !- Hour 17
+    27.7,                    !- Hour 18
+    27.7,                    !- Hour 19
+    27.7,                    !- Hour 20
+    27.7,                    !- Hour 21
+    27.7,                    !- Hour 22
+    27.7,                    !- Hour 23
+    27.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Mar,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    28.7,                    !- Hour 1
+    28.7,                    !- Hour 2
+    28.7,                    !- Hour 3
+    28.7,                    !- Hour 4
+    28.7,                    !- Hour 5
+    28.7,                    !- Hour 6
+    28.7,                    !- Hour 7
+    28.7,                    !- Hour 8
+    28.7,                    !- Hour 9
+    28.7,                    !- Hour 10
+    28.7,                    !- Hour 11
+    28.7,                    !- Hour 12
+    28.7,                    !- Hour 13
+    28.7,                    !- Hour 14
+    28.7,                    !- Hour 15
+    28.7,                    !- Hour 16
+    28.7,                    !- Hour 17
+    28.7,                    !- Hour 18
+    28.7,                    !- Hour 19
+    28.7,                    !- Hour 20
+    28.7,                    !- Hour 21
+    28.7,                    !- Hour 22
+    28.7,                    !- Hour 23
+    28.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Apr,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    30.0,                    !- Hour 1
+    30.0,                    !- Hour 2
+    30.0,                    !- Hour 3
+    30.0,                    !- Hour 4
+    30.0,                    !- Hour 5
+    30.0,                    !- Hour 6
+    30.0,                    !- Hour 7
+    30.0,                    !- Hour 8
+    30.0,                    !- Hour 9
+    30.0,                    !- Hour 10
+    30.0,                    !- Hour 11
+    30.0,                    !- Hour 12
+    30.0,                    !- Hour 13
+    30.0,                    !- Hour 14
+    30.0,                    !- Hour 15
+    30.0,                    !- Hour 16
+    30.0,                    !- Hour 17
+    30.0,                    !- Hour 18
+    30.0,                    !- Hour 19
+    30.0,                    !- Hour 20
+    30.0,                    !- Hour 21
+    30.0,                    !- Hour 22
+    30.0,                    !- Hour 23
+    30.0;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday May,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    31.2,                    !- Hour 1
+    31.2,                    !- Hour 2
+    31.2,                    !- Hour 3
+    31.2,                    !- Hour 4
+    31.2,                    !- Hour 5
+    31.2,                    !- Hour 6
+    31.2,                    !- Hour 7
+    31.2,                    !- Hour 8
+    31.2,                    !- Hour 9
+    31.2,                    !- Hour 10
+    31.2,                    !- Hour 11
+    31.2,                    !- Hour 12
+    31.2,                    !- Hour 13
+    31.2,                    !- Hour 14
+    31.2,                    !- Hour 15
+    31.2,                    !- Hour 16
+    31.2,                    !- Hour 17
+    31.2,                    !- Hour 18
+    31.2,                    !- Hour 19
+    31.2,                    !- Hour 20
+    31.2,                    !- Hour 21
+    31.2,                    !- Hour 22
+    31.2,                    !- Hour 23
+    31.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Jun,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    31.7,                    !- Hour 1
+    31.7,                    !- Hour 2
+    31.7,                    !- Hour 3
+    31.7,                    !- Hour 4
+    31.7,                    !- Hour 5
+    31.7,                    !- Hour 6
+    31.7,                    !- Hour 7
+    31.7,                    !- Hour 8
+    31.7,                    !- Hour 9
+    31.7,                    !- Hour 10
+    31.7,                    !- Hour 11
+    31.7,                    !- Hour 12
+    31.7,                    !- Hour 13
+    31.7,                    !- Hour 14
+    31.7,                    !- Hour 15
+    31.7,                    !- Hour 16
+    31.7,                    !- Hour 17
+    31.7,                    !- Hour 18
+    31.7,                    !- Hour 19
+    31.7,                    !- Hour 20
+    31.7,                    !- Hour 21
+    31.7,                    !- Hour 22
+    31.7,                    !- Hour 23
+    31.7;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Jul,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    31.8,                    !- Hour 1
+    31.8,                    !- Hour 2
+    31.8,                    !- Hour 3
+    31.8,                    !- Hour 4
+    31.8,                    !- Hour 5
+    31.8,                    !- Hour 6
+    31.8,                    !- Hour 7
+    31.8,                    !- Hour 8
+    31.8,                    !- Hour 9
+    31.8,                    !- Hour 10
+    31.8,                    !- Hour 11
+    31.8,                    !- Hour 12
+    31.8,                    !- Hour 13
+    31.8,                    !- Hour 14
+    31.8,                    !- Hour 15
+    31.8,                    !- Hour 16
+    31.8,                    !- Hour 17
+    31.8,                    !- Hour 18
+    31.8,                    !- Hour 19
+    31.8,                    !- Hour 20
+    31.8,                    !- Hour 21
+    31.8,                    !- Hour 22
+    31.8,                    !- Hour 23
+    31.8;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Aug,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    31.6,                    !- Hour 1
+    31.6,                    !- Hour 2
+    31.6,                    !- Hour 3
+    31.6,                    !- Hour 4
+    31.6,                    !- Hour 5
+    31.6,                    !- Hour 6
+    31.6,                    !- Hour 7
+    31.6,                    !- Hour 8
+    31.6,                    !- Hour 9
+    31.6,                    !- Hour 10
+    31.6,                    !- Hour 11
+    31.6,                    !- Hour 12
+    31.6,                    !- Hour 13
+    31.6,                    !- Hour 14
+    31.6,                    !- Hour 15
+    31.6,                    !- Hour 16
+    31.6,                    !- Hour 17
+    31.6,                    !- Hour 18
+    31.6,                    !- Hour 19
+    31.6,                    !- Hour 20
+    31.6,                    !- Hour 21
+    31.6,                    !- Hour 22
+    31.6,                    !- Hour 23
+    31.6;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Sep,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    31.2,                    !- Hour 1
+    31.2,                    !- Hour 2
+    31.2,                    !- Hour 3
+    31.2,                    !- Hour 4
+    31.2,                    !- Hour 5
+    31.2,                    !- Hour 6
+    31.2,                    !- Hour 7
+    31.2,                    !- Hour 8
+    31.2,                    !- Hour 9
+    31.2,                    !- Hour 10
+    31.2,                    !- Hour 11
+    31.2,                    !- Hour 12
+    31.2,                    !- Hour 13
+    31.2,                    !- Hour 14
+    31.2,                    !- Hour 15
+    31.2,                    !- Hour 16
+    31.2,                    !- Hour 17
+    31.2,                    !- Hour 18
+    31.2,                    !- Hour 19
+    31.2,                    !- Hour 20
+    31.2,                    !- Hour 21
+    31.2,                    !- Hour 22
+    31.2,                    !- Hour 23
+    31.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Oct,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    30.3,                    !- Hour 1
+    30.3,                    !- Hour 2
+    30.3,                    !- Hour 3
+    30.3,                    !- Hour 4
+    30.3,                    !- Hour 5
+    30.3,                    !- Hour 6
+    30.3,                    !- Hour 7
+    30.3,                    !- Hour 8
+    30.3,                    !- Hour 9
+    30.3,                    !- Hour 10
+    30.3,                    !- Hour 11
+    30.3,                    !- Hour 12
+    30.3,                    !- Hour 13
+    30.3,                    !- Hour 14
+    30.3,                    !- Hour 15
+    30.3,                    !- Hour 16
+    30.3,                    !- Hour 17
+    30.3,                    !- Hour 18
+    30.3,                    !- Hour 19
+    30.3,                    !- Hour 20
+    30.3,                    !- Hour 21
+    30.3,                    !- Hour 22
+    30.3,                    !- Hour 23
+    30.3;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Nov,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    29.2,                    !- Hour 1
+    29.2,                    !- Hour 2
+    29.2,                    !- Hour 3
+    29.2,                    !- Hour 4
+    29.2,                    !- Hour 5
+    29.2,                    !- Hour 6
+    29.2,                    !- Hour 7
+    29.2,                    !- Hour 8
+    29.2,                    !- Hour 9
+    29.2,                    !- Hour 10
+    29.2,                    !- Hour 11
+    29.2,                    !- Hour 12
+    29.2,                    !- Hour 13
+    29.2,                    !- Hour 14
+    29.2,                    !- Hour 15
+    29.2,                    !- Hour 16
+    29.2,                    !- Hour 17
+    29.2,                    !- Hour 18
+    29.2,                    !- Hour 19
+    29.2,                    !- Hour 20
+    29.2,                    !- Hour 21
+    29.2,                    !- Hour 22
+    29.2,                    !- Hour 23
+    29.2;                    !- Hour 24
+
+  Schedule:Day:Hourly,
+    High ACday Dec,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    28.0,                    !- Hour 1
+    28.0,                    !- Hour 2
+    28.0,                    !- Hour 3
+    28.0,                    !- Hour 4
+    28.0,                    !- Hour 5
+    28.0,                    !- Hour 6
+    28.0,                    !- Hour 7
+    28.0,                    !- Hour 8
+    28.0,                    !- Hour 9
+    28.0,                    !- Hour 10
+    28.0,                    !- Hour 11
+    28.0,                    !- Hour 12
+    28.0,                    !- Hour 13
+    28.0,                    !- Hour 14
+    28.0,                    !- Hour 15
+    28.0,                    !- Hour 16
+    28.0,                    !- Hour 17
+    28.0,                    !- Hour 18
+    28.0,                    !- Hour 19
+    28.0,                    !- Hour 20
+    28.0,                    !- Hour 21
+    28.0,                    !- Hour 22
+    28.0,                    !- Hour 23
+    28.0;                    !- Hour 24
+
+  Schedule:Week:Compact,
+    EquipmentSchedWeek,      !- Name
+    AllDays,                 !- DayType List 1
+    EquipmentSchedDay;       !- Schedule:Day Name 1
+
+  Schedule:Year,
+    EquipmentSchedYear,      !- Name
+    Fraction,                !- Schedule Type Limits Name
+    EquipmentSchedWeek,      !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  GasEquipment,
+    Bepgas,                  !- Name
+    Zone1,                   !- Zone or ZoneList Name
+    EquipmentSchedYear,      !- Schedule Name
+    EquipmentLevel,          !- Design Level Calculation Method
+    250,                     !- Design Level {W}
+    ,                        !- Power per Zone Floor Area {W/m2}
+    ,                        !- Power per Person {W/Person}
+    0.3,                     !- Fraction Latent
+    0.5,                     !- Fraction Radiant
+    0.2,                     !- Fraction Lost
+    ,                        !- Carbon Dioxide Generation Rate {m3/s-W}
+    General;                 !- End-Use Subcategory
+
+  Schedule:Day:Hourly,
+    OccupancyDay,            !- Name
+    Fraction,                !- Schedule Type Limits Name
+    1,                       !- Hour 1
+    1,                       !- Hour 2
+    1,                       !- Hour 3
+    1,                       !- Hour 4
+    1,                       !- Hour 5
+    1,                       !- Hour 6
+    0.75,                    !- Hour 7
+    0.5,                     !- Hour 8
+    0.25,                    !- Hour 9
+    0.25,                    !- Hour 10
+    0.5,                     !- Hour 11
+    0.5,                     !- Hour 12
+    0.5,                     !- Hour 13
+    0.25,                    !- Hour 14
+    0.25,                    !- Hour 15
+    0.25,                    !- Hour 16
+    0.25,                    !- Hour 17
+    0.5,                     !- Hour 18
+    0.75,                    !- Hour 19
+    1,                       !- Hour 20
+    1,                       !- Hour 21
+    1,                       !- Hour 22
+    1,                       !- Hour 23
+    1;                       !- Hour 24
+
+  Schedule:Week:Compact,
+    occupancyWeek,           !- Name
+    AllDays,                 !- DayType List 1
+    OccupancyDay;            !- Schedule:Day Name 1
+
+  Schedule:Year,
+    OccupancyYear,           !- Name
+    Fraction,                !- Schedule Type Limits Name
+    occupancyWeek,           !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  ElectricEquipment,
+    HeatSources,             !- Name
+    Zone1,                   !- Zone or ZoneList Name
+    EquipmentSchedYear,      !- Schedule Name
+    EquipmentLevel,          !- Design Level Calculation Method
+    1000,                    !- Design Level {W}
+    ,                        !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0.2,                     !- Fraction Latent
+    0.6,                     !- Fraction Radiant
+    0.05,                    !- Fraction Lost
+    General;                 !- End-Use Subcategory
+
+  Schedule:Day:Hourly,
+    EquipmentSchedDay,       !- Name
+    Fraction,                !- Schedule Type Limits Name
+    0,                       !- Hour 1
+    0,                       !- Hour 2
+    0,                       !- Hour 3
+    0,                       !- Hour 4
+    0,                       !- Hour 5
+    1,                       !- Hour 6
+    1,                       !- Hour 7
+    0.75,                    !- Hour 8
+    0.5,                     !- Hour 9
+    0.2,                     !- Hour 10
+    0.2,                     !- Hour 11
+    0.5,                     !- Hour 12
+    0.5,                     !- Hour 13
+    0.5,                     !- Hour 14
+    0.2,                     !- Hour 15
+    0.2,                     !- Hour 16
+    0.2,                     !- Hour 17
+    0.5,                     !- Hour 18
+    0.75,                    !- Hour 19
+    1,                       !- Hour 20
+    1,                       !- Hour 21
+    0.75,                    !- Hour 22
+    0,                       !- Hour 23
+    0;                       !- Hour 24
+
+  Construction,
+    Equipment,               !- Name
+    VuaTratTran;             !- Outside Layer
+
+  Construction,
+    Foundation,              !- Name
+    BrickFiredclayThermalMass4;  !- Outside Layer
+
+  ComponentCost:LineItem,
+    CostFoundation,          !- Name
+    ,                        !- Type
+    General,                 !- Line Item Type
+    Foundation,              !- Item Name
+    ,                        !- Object End-Use Key
+    2500,                    !- Cost per Each {$}
+    ,                        !- Cost per Area {$/m2}
+    ,                        !- Cost per Unit of Output Capacity {$/kW}
+    ,                        !- Cost per Unit of Output Capacity per COP {$/kW}
+    ,                        !- Cost per Volume {$/m3}
+    ,                        !- Cost per Volume Rate {$/(m3/s)}
+    ,                        !- Cost per Energy per Temperature Difference {$/(W/K)}
+    1;                       !- Quantity {dimensionless}
+
+  ComponentCost:LineItem,
+    equipmentCost,           !- Name
+    ,                        !- Type
+    General,                 !- Line Item Type
+    Equipment,               !- Item Name
+    ,                        !- Object End-Use Key
+    1800,                    !- Cost per Each {$}
+    ,                        !- Cost per Area {$/m2}
+    ,                        !- Cost per Unit of Output Capacity {$/kW}
+    ,                        !- Cost per Unit of Output Capacity per COP {$/kW}
+    ,                        !- Cost per Volume {$/m3}
+    ,                        !- Cost per Volume Rate {$/(m3/s)}
+    ,                        !- Cost per Energy per Temperature Difference {$/(W/K)}
+    1;                       !- Quantity {dimensionless}
+
+  Material,
+    FloorInsulation2,        !- Name
+    MediumSmooth,            !- Roughness
+    0.02,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Material,
+    FloorInsulation3,        !- Name
+    MediumSmooth,            !- Roughness
+    0.03,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Material,
+    FloorInsulation4,        !- Name
+    MediumSmooth,            !- Roughness
+    0.04,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Construction,
+    501,                     !- Name
+    Soil,                    !- Outside Layer
+    FloorInsulation2,        !- Layer 2
+    ConcSlab,                !- Layer 3
+    VuaLotGach,              !- Layer 4
+    FloorTile;               !- Layer 5
+
+  Construction,
+    510,                     !- Name
+    Soil,                    !- Outside Layer
+    FloorInsulation3,        !- Layer 2
+    ConcSlab,                !- Layer 3
+    VuaLotGach,              !- Layer 4
+    FloorTile;               !- Layer 5
+
+  Construction,
+    502,                     !- Name
+    Soil,                    !- Outside Layer
+    FloorInsulation4,        !- Layer 2
+    ConcSlab,                !- Layer 3
+    VuaLotGach,              !- Layer 4
+    FloorTile;               !- Layer 5
+
+  Material,
+    BrickFiredclayThermalMass2,  !- Name
+    MediumRough,             !- Roughness
+    0.2,                     !- Thickness {m}
+    1.34,                    !- Conductivity {W/m-K}
+    2400,                    !- Density {kg/m3}
+    790;                     !- Specific Heat {J/kg-K}
+
+  Material,
+    BrickFiredclayThermalMass3,  !- Name
+    MediumRough,             !- Roughness
+    0.3,                     !- Thickness {m}
+    1.34,                    !- Conductivity {W/m-K}
+    2400,                    !- Density {kg/m3}
+    790;                     !- Specific Heat {J/kg-K}
+
+  Material,
+    BrickFiredclayThermalMass4,  !- Name
+    MediumRough,             !- Roughness
+    0.4,                     !- Thickness {m}
+    1.34,                    !- Conductivity {W/m-K}
+    2400,                    !- Density {kg/m3}
+    790;                     !- Specific Heat {J/kg-K}
+
+  Construction,
+    601,                     !- Name
+    VuaTratTrong,            !- Outside Layer
+    BrickFiredclayThermalMass2,  !- Layer 2
+    VuaTratTrong;            !- Layer 3
+
+  Construction,
+    610,                     !- Name
+    VuaTratTrong,            !- Outside Layer
+    BrickFiredclayThermalMass3,  !- Layer 2
+    VuaTratTrong;            !- Layer 3
+
+  Construction,
+    602,                     !- Name
+    VuaTratTrong,            !- Outside Layer
+    BrickFiredclayThermalMass4,  !- Layer 2
+    VuaTratTrong;            !- Layer 3
+
+  Output:Table:SummaryReports,
+    ComponentCostEconomicsSummary;  !- Report 1 Name
+
+  ComponentCost:Adjustments,
+    10,                      !- Miscellaneous Cost per Conditioned Area {$/m2}
+    0.05,                    !- Design and Engineering Fees {dimensionless}
+    0.055,                   !- Contractor Fee {dimensionless}
+    0.1,                     !- Contingency {dimensionless}
+    0.003,                   !- Permits, Bonding and Insurance {dimensionless}
+    0.005,                   !- Commissioning Fee {dimensionless}
+    1;                       !- Regional Adjustment Factor {dimensionless}
+
+  CurrencyType,
+    USD;                     !- Monetary Unit
+
+  ComponentCost:LineItem,
+    SouthOverhangCost,       !- Name
+    ,                        !- Type
+    Shading:Zone:Detailed,   !- Line Item Type
+    SouthWindowOverhang,     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    15;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    NorthOverhangCost,       !- Name
+    ,                        !- Type
+    Shading:Zone:Detailed,   !- Line Item Type
+    NorthWindowOverhang,     !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    15;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    EastOverhangCost,        !- Name
+    ,                        !- Type
+    Shading:Zone:Detailed,   !- Line Item Type
+    EastWindowOverhang,      !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    15;                      !- Cost per Area {$/m2}
+
+  ComponentCost:LineItem,
+    WestOverhangCost,        !- Name
+    ,                        !- Type
+    Shading:Zone:Detailed,   !- Line Item Type
+    WestWindowOverhang,      !- Item Name
+    ,                        !- Object End-Use Key
+    ,                        !- Cost per Each {$}
+    15;                      !- Cost per Area {$/m2}
+
+  Material,
+    BrickFiredclayThermalMass1,  !- Name
+    MediumRough,             !- Roughness
+    0.1,                     !- Thickness {m}
+    1.34,                    !- Conductivity {W/m-K}
+    2400,                    !- Density {kg/m3}
+    790;                     !- Specific Heat {J/kg-K}
+
+  Construction,
+    600,                     !- Name
+    VuaTratTrong,            !- Outside Layer
+    BrickFiredclayThermalMass1,  !- Layer 2
+    VuaTratTrong;            !- Layer 3
+
+  InternalMass,
+    ThermalMassInterior,     !- Name
+    %tmass%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    40;                      !- Surface Area {m2}
+
+  Shading:Overhang,
+    SouthWindowOverhang,     !- Name
+    SubObj:0006,             !- Window or Door Name
+    0.1,                     !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    0.4,                     !- Left extension from Window/Door Width {m}
+    0.4,                     !- Right extension from Window/Door Width {m}
+    %osize1%;                !- Depth {m}
+
+  Shading:Overhang,
+    NorthWindowOverhang,     !- Name
+    SubObj:0007,             !- Window or Door Name
+    0.1,                     !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    0.4,                     !- Left extension from Window/Door Width {m}
+    0.4,                     !- Right extension from Window/Door Width {m}
+    %osize2%;                     !- Depth {m}
+
+  Shading:Overhang,
+    WestWindowOverhang,      !- Name
+    SubObj:0008,             !- Window or Door Name
+    0.1,                     !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    0.4,                     !- Left extension from Window/Door Width {m}
+    0.4,                     !- Right extension from Window/Door Width {m}
+    %osize4%;                     !- Depth {m}
+
+  Shading:Overhang,
+    EastWindowOverhang,      !- Name
+    SubObj:0009,             !- Window or Door Name
+    0.1,                     !- Height above Window or Door {m}
+    90,                      !- Tilt Angle from Window/Door {deg}
+    0.4,                     !- Left extension from Window/Door Width {m}
+    0.4,                     !- Right extension from Window/Door Width {m}
+    %osize3%;                     !- Depth {m}
+
+  Schedule:Compact,
+    ventilationcontrolSetpoint,  !- Name
+    AnyNumber,               !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,18;         !- Field 3
+
+  AirflowNetwork:SimulationControl,
+    AirflowNetwork1111,      !- Name
+    NoMultizoneOrDistribution,  !- AirflowNetwork Control
+    SurfaceAverageCalculation,  !- Wind Pressure Coefficient Type
+    ,                        !- AirflowNetwork Wind Pressure Coefficient Array Name
+    ExternalNode,            !- Height Selection for Local Wind Pressure Calculation
+    LowRise,                 !- Building Type
+    500,                     !- Maximum Number of Iterations {dimensionless}
+    ZeroNodePressures,       !- Initialization Type
+    0.001,                   !- Relative Airflow Convergence Tolerance {dimensionless}
+    0.00001,                 !- Absolute Airflow Convergence Tolerance {kg/s}
+    -0.5,                    !- Convergence Acceleration Limit {dimensionless}
+    90,                      !- Azimuth Angle of Long Axis of Building {deg}
+    0.5;                     !- Ratio of Building Width Along Short Axis to Width Along Long Axis
+
+  AirflowNetwork:MultiZone:Zone,
+    Zone1,                   !- Zone Name
+    Temperature,             !- Ventilation Control Mode
+    ventilationcontrolSetpoint,  !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    0,                       !- Minimum Venting Open Factor {dimensionless}
+    0,                       !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    400;                     !- Venting Availability Schedule Name
+
+  AirflowNetwork:MultiZone:Component:SimpleOpening,
+    airleakageLevelWindow,   !- Name
+    %infil%,                   !- Air Mass Flow Coefficient When Opening is Closed {kg/s-m}
+    0.65,                    !- Air Mass Flow Exponent When Opening is Closed {dimensionless}
+    0.005,                   !- Minimum Density Difference for Two-Way Flow {kg/m3}
+    0.65;                    !- Discharge Coefficient {dimensionless}
+
+  AirflowNetwork:MultiZone:Surface,
+    SubObj:0006,             !- Surface Name
+    airleakageLevelWindow,   !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ventilationcontrolSetpoint,  !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    0,                       !- Minimum Venting Open Factor {dimensionless}
+    0,                       !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    0,                       !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    400;                     !- Venting Availability Schedule Name
+
+  AirflowNetwork:MultiZone:Surface,
+    SubObj:0007,             !- Surface Name
+    airleakageLevelWindow,   !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ventilationcontrolSetpoint,  !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    0,                       !- Minimum Venting Open Factor {dimensionless}
+    0,                       !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    0,                       !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    400;                     !- Venting Availability Schedule Name
+
+  AirflowNetwork:MultiZone:Surface,
+    SubObj:0008,             !- Surface Name
+    airleakageLevelWindow,   !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ventilationcontrolSetpoint,  !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    0,                       !- Minimum Venting Open Factor {dimensionless}
+    0,                       !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    0,                       !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    400;                     !- Venting Availability Schedule Name
+
+  AirflowNetwork:MultiZone:Surface,
+    SubObj:0009,             !- Surface Name
+    airleakageLevelWindow,   !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ventilationcontrolSetpoint,  !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    0,                       !- Minimum Venting Open Factor {dimensionless}
+    0,                       !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    0,                       !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    400;                     !- Venting Availability Schedule Name
+
+  AirflowNetwork:MultiZone:ReferenceCrackConditions,
+    CrackCondition1,         !- Name
+    20,                      !- Reference Temperature {C}
+    101325,                  !- Reference Barometric Pressure {Pa}
+    0.012;                   !- Reference Humidity Ratio {kgWater/kgDryAir}
+
+  Schedule:Day:Hourly,
+    DaytimeVentilation,      !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    0,                       !- Hour 1
+    0,                       !- Hour 2
+    0,                       !- Hour 3
+    0,                       !- Hour 4
+    0,                       !- Hour 5
+    0,                       !- Hour 6
+    1,                       !- Hour 7
+    1,                       !- Hour 8
+    1,                       !- Hour 9
+    1,                       !- Hour 10
+    1,                       !- Hour 11
+    1,                       !- Hour 12
+    1,                       !- Hour 13
+    1,                       !- Hour 14
+    1,                       !- Hour 15
+    1,                       !- Hour 16
+    1,                       !- Hour 17
+    1,                       !- Hour 18
+    1,                       !- Hour 19
+    0,                       !- Hour 20
+    0,                       !- Hour 21
+    0,                       !- Hour 22
+    0,                       !- Hour 23
+    0;                       !- Hour 24
+
+  Schedule:Day:Hourly,
+    NightVentilation,        !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    1,                       !- Hour 1
+    1,                       !- Hour 2
+    1,                       !- Hour 3
+    1,                       !- Hour 4
+    1,                       !- Hour 5
+    1,                       !- Hour 6
+    0,                       !- Hour 7
+    0,                       !- Hour 8
+    0,                       !- Hour 9
+    0,                       !- Hour 10
+    0,                       !- Hour 11
+    0,                       !- Hour 12
+    0,                       !- Hour 13
+    0,                       !- Hour 14
+    0,                       !- Hour 15
+    0,                       !- Hour 16
+    0,                       !- Hour 17
+    0,                       !- Hour 18
+    0,                       !- Hour 19
+    1,                       !- Hour 20
+    1,                       !- Hour 21
+    1,                       !- Hour 22
+    1,                       !- Hour 23
+    1;                       !- Hour 24
+
+  Schedule:Day:Hourly,
+    FullDayVentilation,      !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    1,                       !- Hour 1
+    1,                       !- Hour 2
+    1,                       !- Hour 3
+    1,                       !- Hour 4
+    1,                       !- Hour 5
+    1,                       !- Hour 6
+    1,                       !- Hour 7
+    1,                       !- Hour 8
+    1,                       !- Hour 9
+    1,                       !- Hour 10
+    1,                       !- Hour 11
+    1,                       !- Hour 12
+    1,                       !- Hour 13
+    1,                       !- Hour 14
+    1,                       !- Hour 15
+    1,                       !- Hour 16
+    1,                       !- Hour 17
+    1,                       !- Hour 18
+    1,                       !- Hour 19
+    1,                       !- Hour 20
+    1,                       !- Hour 21
+    1,                       !- Hour 22
+    1,                       !- Hour 23
+    1;                       !- Hour 24
+
+  Schedule:Day:Hourly,
+    FullDayClose,            !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    0,                       !- Hour 1
+    0,                       !- Hour 2
+    0,                       !- Hour 3
+    0,                       !- Hour 4
+    0,                       !- Hour 5
+    0,                       !- Hour 6
+    0,                       !- Hour 7
+    0,                       !- Hour 8
+    0,                       !- Hour 9
+    0,                       !- Hour 10
+    0,                       !- Hour 11
+    0,                       !- Hour 12
+    0,                       !- Hour 13
+    0,                       !- Hour 14
+    0,                       !- Hour 15
+    0,                       !- Hour 16
+    0,                       !- Hour 17
+    0,                       !- Hour 18
+    0,                       !- Hour 19
+    0,                       !- Hour 20
+    0,                       !- Hour 21
+    0,                       !- Hour 22
+    0,                       !- Hour 23
+    0;                       !- Hour 24
+
+  Schedule:Week:Compact,
+    DaytimeVentilationWeek,  !- Name
+    AllDays,                 !- DayType List 1
+    DaytimeVentilation;      !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    NightVentilationWeek,    !- Name
+    AllDays,                 !- DayType List 1
+    NightVentilation;        !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    FullDayVentilationWeek,  !- Name
+    AllDays,                 !- DayType List 1
+    FullDayVentilation;      !- Schedule:Day Name 1
+
+  Schedule:Week:Compact,
+    FullDayCloseWeek,        !- Name
+    AllDays,                 !- DayType List 1
+    FullDayClose;            !- Schedule:Day Name 1
+
+  Schedule:Year,
+    400,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    DaytimeVentilationWeek,  !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  Schedule:Year,
+    401,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    NightVentilationWeek,    !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  Schedule:Year,
+    402,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayVentilationWeek,  !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  Schedule:Year,
+    403,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    12,                      !- End Month 1
+    31;                      !- End Day 1
+
+  Schedule:Year,
+    404,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    4,                       !- End Month 1
+    30,                      !- End Day 1
+    DaytimeVentilationWeek,  !- Schedule:Week Name 2
+    5,                       !- Start Month 2
+    1,                       !- Start Day 2
+    9,                       !- End Month 2
+    30,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    10,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  Schedule:Year,
+    405,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    2,                       !- End Month 1
+    28,                      !- End Day 1
+    DaytimeVentilationWeek,  !- Schedule:Week Name 2
+    3,                       !- Start Month 2
+    1,                       !- Start Day 2
+    10,                      !- End Month 2
+    31,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    11,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  Schedule:Year,
+    406,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    4,                       !- End Month 1
+    30,                      !- End Day 1
+    NightVentilationWeek,    !- Schedule:Week Name 2
+    5,                       !- Start Month 2
+    1,                       !- Start Day 2
+    9,                       !- End Month 2
+    30,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    10,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  Schedule:Year,
+    407,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    2,                       !- End Month 1
+    28,                      !- End Day 1
+    NightVentilationWeek,    !- Schedule:Week Name 2
+    3,                       !- Start Month 2
+    1,                       !- Start Day 2
+    10,                      !- End Month 2
+    31,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    11,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  Schedule:Year,
+    408,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    4,                       !- End Month 1
+    30,                      !- End Day 1
+    FullDayVentilationWeek,  !- Schedule:Week Name 2
+    5,                       !- Start Month 2
+    1,                       !- Start Day 2
+    9,                       !- End Month 2
+    30,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    10,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  Schedule:Year,
+    409,                     !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    FullDayCloseWeek,        !- Schedule:Week Name 1
+    1,                       !- Start Month 1
+    1,                       !- Start Day 1
+    2,                       !- End Month 1
+    28,                      !- End Day 1
+    FullDayVentilationWeek,  !- Schedule:Week Name 2
+    3,                       !- Start Month 2
+    1,                       !- Start Day 2
+    10,                      !- End Month 2
+    31,                      !- End Day 2
+    FullDayCloseWeek,        !- Schedule:Week Name 3
+    11,                      !- Start Month 3
+    1,                       !- Start Day 3
+    12,                      !- End Month 3
+    31;                      !- End Day 3
+
+  People,
+    People,                  !- Name
+    Zone1,                   !- Zone or ZoneList Name
+    OccupancyYear,           !- Number of People Schedule Name
+    People,                  !- Number of People Calculation Method
+    4,                       !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    ,                        !- Zone Floor Area per Person {m2/person}
+    0.3,                     !- Fraction Radiant
+    autocalculate,           !- Sensible Heat Fraction
+    ActivityYear,            !- Activity Level Schedule Name
+    0.0000000382,            !- Carbon Dioxide Generation Rate {m3/s-W}
+    No,                      !- Enable ASHRAE 55 Comfort Warnings
+    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
+    ,                        !- Surface Name/Angle Factor List Name
+    WorkEfficiencyYear,      !- Work Efficiency Schedule Name
+    ClothingInsulationSchedule,  !- Clothing Insulation Calculation Method
+    ,                        !- Clothing Insulation Calculation Method Schedule Name
+    ClotheYear,              !- Clothing Insulation Schedule Name
+    VelocityYear,            !- Air Velocity Schedule Name
+    Fanger;                  !- Thermal Comfort Model 1 Type
+
+  Schedule:Compact,
+    ClotheYear,              !- Name
+    AnyNumber,               !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,.6;         !- Field 3
+
+  Schedule:Compact,
+    ActivityYear,            !- Name
+    AnyNumber,               !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,120;        !- Field 3
+
+  Schedule:Compact,
+    VelocityYear,            !- Name
+    AnyNumber,               !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,.15;        !- Field 3
+
+  Schedule:Compact,
+    WorkEfficiencyYear,      !- Name
+    AnyNumber,               !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,0;          !- Field 3
+
+  Output:Variable,*,Zone Cooling Setpoint Not Met Time,RunPeriod;
+
+  ScheduleTypeLimits,
+    AnyNumber,               !- Name
+    ,                        !- Lower Limit Value
+    ,                        !- Upper Limit Value
+    ,                        !- Numeric Type
+    Dimensionless;           !- Unit Type
+
+  ScheduleTypeLimits,
+    On/Off,                  !- Name
+    0.0,                     !- Lower Limit Value
+    1.0,                     !- Upper Limit Value
+    Discrete;                !- Numeric Type
+
+  Schedule:Compact,
+    InfiltrationYear,        !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1;          !- Field 3
+
+  ZoneInfiltration:DesignFlowRate,
+    ZoneInfiltration,        !- Name
+    Zone1,                   !- Zone or ZoneList Name
+    InfiltrationYear,        !- Schedule Name
+    Flow/Zone,               !- Design Flow Rate Calculation Method
+    0.1,                     !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    0,                       !- Constant Term Coefficient
+    0.05,                    !- Temperature Term Coefficient
+    0.18,                    !- Velocity Term Coefficient
+    0;                       !- Velocity Squared Term Coefficient
+
+  Construction,
+    310,                     !- Name
+    RoofAsphalt,             !- Outside Layer
+    WallInsulation1cm,       !- Layer 2
+    ConcreteRoofSlap,        !- Layer 3
+    VuaTratTran;             !- Layer 4
+
+  Construction,
+    301,                     !- Name
+    RoofAsphalt,             !- Outside Layer
+    WallInsulation2cm,       !- Layer 2
+    ConcreteRoofSlap,        !- Layer 3
+    VuaTratTran;             !- Layer 4
+
+  Construction,
+    311,                     !- Name
+    RoofAsphalt,             !- Outside Layer
+    WallInsulation3cm,       !- Layer 2
+    ConcreteRoofSlap,        !- Layer 3
+    VuaTratTran;             !- Layer 4
+
+  Construction,
+    302,                     !- Name
+    RoofAsphalt,             !- Outside Layer
+    WallInsulation4cm,       !- Layer 2
+    ConcreteRoofSlap,        !- Layer 3
+    VuaTratTran;             !- Layer 4
+
+  Construction,
+    110,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    1LopGachOng,             !- Layer 3
+    VuaTratTrong;            !- Layer 4
+
+  Construction,
+    100,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    VuaTratTrong;            !- Layer 3
+
+  Material,
+    WallInsulation2cm,       !- Name
+    MediumSmooth,            !- Roughness
+    0.02,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Material,
+    WallInsulation3cm,       !- Name
+    MediumSmooth,            !- Roughness
+    0.03,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Material,
+    WallInsulation4cm,       !- Name
+    MediumSmooth,            !- Roughness
+    0.04,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Construction,
+    111,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    WallInsulation1cm,       !- Layer 3
+    1LopGachOng,             !- Layer 4
+    VuaTratTrong;            !- Layer 5
+
+  Construction,
+    102,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    WallInsulation2cm,       !- Layer 3
+    1LopGachOng,             !- Layer 4
+    VuaTratTrong;            !- Layer 5
+
+  Construction,
+    112,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    WallInsulation3cm,       !- Layer 3
+    1LopGachOng,             !- Layer 4
+    VuaTratTrong;            !- Layer 5
+
+  Construction,
+    103,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    WallInsulation4cm,       !- Layer 3
+    1LopGachOng,             !- Layer 4
+    VuaTratTrong;            !- Layer 5
+
+  WindowMaterial:Gas,
+    AIR 6MM,                 !- Name
+    Air,                     !- Gas Type
+    0.0063;                  !- Thickness {m}
+
+  WindowMaterial:Gas,
+    ARGON 13MM,              !- Name
+    Argon,                   !- Gas Type
+    0.0127;                  !- Thickness {m}
+
+  WindowMaterial:Glazing,
+    CLEAR 6MM,               !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.006,                   !- Thickness {m}
+    0.775,                   !- Solar Transmittance at Normal Incidence
+    0.071,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.071,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.881,                   !- Visible Transmittance at Normal Incidence
+    0.080,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.080,                   !- Back Side Visible Reflectance at Normal Incidence
+    0.0,                     !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.84,                    !- Back Side Infrared Hemispherical Emissivity
+    0.9;                     !- Conductivity {W/m-K}
+
+  WindowMaterial:Glazing,
+    PYR B CLEAR 6MM,         !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.006,                   !- Thickness {m}
+    0.680,                   !- Solar Transmittance at Normal Incidence
+    0.090,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.100,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.810,                   !- Visible Transmittance at Normal Incidence
+    0.110,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.120,                   !- Back Side Visible Reflectance at Normal Incidence
+    0.0,                     !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.20,                    !- Back Side Infrared Hemispherical Emissivity
+    0.9;                     !- Conductivity {W/m-K}
+
+  WindowMaterial:Glazing,
+    REF A CLEAR MID 6MM,     !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.006,                   !- Thickness {m}
+    0.110,                   !- Solar Transmittance at Normal Incidence
+    0.270,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.430,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.140,                   !- Visible Transmittance at Normal Incidence
+    0.310,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.350,                   !- Back Side Visible Reflectance at Normal Incidence
+    0.0,                     !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.47,                    !- Back Side Infrared Hemispherical Emissivity
+    0.9;                     !- Conductivity {W/m-K}
+
+  Construction,
+    200,                     !- Name
+    CLEAR 6MM;               !- Outside Layer
+
+  Construction,
+    201,                     !- Name
+    PYR B CLEAR 6MM;         !- Outside Layer
+
+  Construction,
+    210,                     !- Name
+    CLEAR 6MM,               !- Outside Layer
+    AIR 6MM,                 !- Layer 2
+    CLEAR 6MM;               !- Layer 3
+
+  Construction,
+    202,                     !- Name
+    REF A CLEAR MID 6MM,     !- Outside Layer
+    ARGON 13MM,              !- Layer 2
+    CLEAR 6MM;               !- Layer 3
+
+  Output:Variable,*,Zone Mean Air Temperature,Hourly;
+
+  Material,
+    WallInsulation1cm,       !- Name
+    MediumSmooth,            !- Roughness
+    0.01,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  ScheduleTypeLimits,
+    Fraction,                !- Name
+    0.0,                     !- Lower Limit Value
+    1.0,                     !- Upper Limit Value
+    Continuous;              !- Numeric Type
+
+  Material,
+    FloorInsulation1,        !- Name
+    MediumSmooth,            !- Roughness
+    0.01,                    !- Thickness {m}
+    0.029,                   !- Conductivity {W/m-K}
+    29,                      !- Density {kg/m3}
+    1210;                    !- Specific Heat {J/kg-K}
+
+  Material,
+    FloorTile,               !- Name
+    Rough,                   !- Roughness
+    0.01,                    !- Thickness {m}
+    0.75300,                 !- Conductivity {W/m-K}
+    2400,                    !- Density {kg/m3}
+    656.90002,               !- Specific Heat {J/kg-K}
+    0.89000,                 !- Thermal Absorptance
+    0.27900,                 !- Solar Absorptance
+    0.19863;                 !- Visible Absorptance
+
+  Output:VariableDictionary,regular;
+
+  Output:Surfaces:Drawing,DXF,Triangulate3DFace;
+
+  Output:Variable,*,Zone Heating Setpoint Not Met Time,RunPeriod;
+
+  Version,8.5;
+
+  Building,
+    LowCostHouse,            !- Name
+    %azimuth%,               !- North Axis {deg}
+    City,                    !- Terrain
+    0.05000,                 !- Loads Convergence Tolerance Value
+    0.50000,                 !- Temperature Convergence Tolerance Value {deltaC}
+    FullInteriorAndExterior, !- Solar Distribution
+    25,                      !- Maximum Number of Warmup Days
+    6;                       !- Minimum Number of Warmup Days
+
+  Site:Location,
+    HANOI - VNM IWEC Data WMO#=488200,  !- Name
+    21.02,                   !- Latitude {deg}
+    105.80000,               !- Longitude {deg}
+    7.00000,                 !- Time Zone {hr}
+    6;                       !- Elevation {m}
+
+  Timestep,4;
+
+  SurfaceConvectionAlgorithm:Inside,TARP;
+
+  SurfaceConvectionAlgorithm:Outside,DOE-2;
+
+  HeatBalanceAlgorithm,ConductionTransferFunction;
+
+  ShadowCalculation,
+    AverageOverDaysInFrequency,  !- Calculation Method
+    20;                      !- Calculation Frequency
+
+  SimulationControl,
+    No,                      !- Do Zone Sizing Calculation
+    No,                      !- Do System Sizing Calculation
+    No,                      !- Do Plant Sizing Calculation
+    No,                      !- Run Simulation for Sizing Periods
+    Yes;                     !- Run Simulation for Weather File Run Periods
+
+  RunPeriod,
+    WholeYear,               !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    UseWeatherFile,          !- Day of Week for Start Day
+    Yes,                     !- Use Weather File Holidays and Special Days
+    Yes,                     !- Use Weather File Daylight Saving Period
+    Yes,                     !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    ;                        !- Use Weather File Snow Indicators
+
+  Site:GroundTemperature:BuildingSurface,22.4,22.7,23.7,25,26.2,26.7,26.8,26.6,26.2,25.3,24.2,23;
+
+  Material,
+    VuaTratNgoai,            !- Name
+    Rough,                   !- Roughness
+    0.01000,                 !- Thickness {m}
+    0.75312,                 !- Conductivity {W/m-K}
+    2300.00000,              !- Density {kg/m3}
+    656.90002,               !- Specific Heat {J/kg-K}
+    0.90000,                 !- Thermal Absorptance
+    %absor%,                 !- Solar Absorptance
+    0.04302;                 !- Visible Absorptance
+
+  Material,
+    1LopGachOng,             !- Name
+    Rough,                   !- Roughness
+    0.11000,                 !- Thickness {m}
+    0.71128,                 !- Conductivity {W/m-K}
+    2000.00000,              !- Density {kg/m3}
+    836.79999,               !- Specific Heat {J/kg-K}
+    0.90000,                 !- Thermal Absorptance
+    0.25400,                 !- Solar Absorptance
+    0.17110;                 !- Visible Absorptance
+
+  Material:AirGap,
+    WallAirGap,              !- Name
+    0.17986;                 !- Thermal Resistance {m2-K/W}
+
+  Material,
+    VuaTratTrong,            !- Name
+    Rough,                   !- Roughness
+    0.01000,                 !- Thickness {m}
+    0.43095,                 !- Conductivity {W/m-K}
+    1250.00000,              !- Density {kg/m3}
+    1088.00000,              !- Specific Heat {J/kg-K}
+    0.90000,                 !- Thermal Absorptance
+    0.25400,                 !- Solar Absorptance
+    0.17110;                 !- Visible Absorptance
+
+  Construction,
+    101,                     !- Name
+    VuaTratNgoai,            !- Outside Layer
+    1LopGachOng,             !- Layer 2
+    WallAirGap,              !- Layer 3
+    1LopGachOng,             !- Layer 4
+    VuaTratTrong;            !- Layer 5
+
+  Material,
+    Soil,                    !- Name
+    Rough,                   !- Roughness
+    0.30000,                 !- Thickness {m}
+    0.83700,                 !- Conductivity {W/m-K}
+    1300.00000,              !- Density {kg/m3}
+    1046.00000,              !- Specific Heat {J/kg-K}
+    0.89000,                 !- Thermal Absorptance
+    0.27900,                 !- Solar Absorptance
+    0.42718;                 !- Visible Absorptance
+
+  Material,
+    ConcSlab,                !- Name
+    Rough,                   !- Roughness
+    0.10000,                 !- Thickness {m}
+    0.75300,                 !- Conductivity {W/m-K}
+    3800.00000,              !- Density {kg/m3}
+    656.90002,               !- Specific Heat {J/kg-K}
+    0.89000,                 !- Thermal Absorptance
+    0.27900,                 !- Solar Absorptance
+    0.19863;                 !- Visible Absorptance
+
+  Material,
+    VuaLotGach,              !- Name
+    Rough,                   !- Roughness
+    0.00500,                 !- Thickness {m}
+    0.75300,                 !- Conductivity {W/m-K}
+    2000.00000,              !- Density {kg/m3}
+    656.90002,               !- Specific Heat {J/kg-K}
+    0.89000,                 !- Thermal Absorptance
+    0.27900,                 !- Solar Absorptance
+    0.19863;                 !- Visible Absorptance
+
+  Construction,
+    500,                     !- Name
+    Soil,                    !- Outside Layer
+    ConcSlab,                !- Layer 2
+    VuaLotGach,              !- Layer 3
+    FloorTile;               !- Layer 4
+
+  Material,
+    RoofAsphalt,             !- Name
+    Rough,                   !- Roughness
+    0.00600,                 !- Thickness {m}
+    0.08786,                 !- Conductivity {W/m-K}
+    900.00000,               !- Density {kg/m3}
+    1966.00000,              !- Specific Heat {J/kg-K}
+    0.88000,                 !- Thermal Absorptance
+    0.31000,                 !- Solar Absorptance
+    0.04706;                 !- Visible Absorptance
+
+  Material,
+    ConcreteRoofSlap,        !- Name
+    Rough,                   !- Roughness
+    0.10000,                 !- Thickness {m}
+    1.04600,                 !- Conductivity {W/m-K}
+    2300.00000,              !- Density {kg/m3}
+    656.90002,               !- Specific Heat {J/kg-K}
+    0.87000,                 !- Thermal Absorptance
+    0.31000,                 !- Solar Absorptance
+    0.23314;                 !- Visible Absorptance
+
+  Material,
+    VuaTratTran,             !- Name
+    Rough,                   !- Roughness
+    0.01500,                 !- Thickness {m}
+    0.52000,                 !- Conductivity {W/m-K}
+    1200.00000,              !- Density {kg/m3}
+    840.00000,               !- Specific Heat {J/kg-K}
+    0.87000,                 !- Thermal Absorptance
+    0.31000,                 !- Solar Absorptance
+    0.23314;                 !- Visible Absorptance
+
+  Construction,
+    300,                     !- Name
+    RoofAsphalt,             !- Outside Layer
+    ConcreteRoofSlap,        !- Layer 2
+    VuaTratTran;             !- Layer 3
+
+  GlobalGeometryRules,
+    UpperLeftCorner,         !- Starting Vertex Position
+    CounterClockWise,        !- Vertex Entry Direction
+    Relative,                !- Coordinate System
+    Relative;                !- Daylighting Reference Point Coordinate System
+
+  Zone,
+    Zone1,                   !- Name
+    0.00000,                 !- Direction of Relative North {deg}
+    0.0,                     !- X Origin {m}
+    0.0,                     !- Y Origin {m}
+    0.0,                     !- Z Origin {m}
+    1,                       !- Type
+    1.0,                     !- Multiplier
+    3.30000,                 !- Ceiling Height {m}
+    330.00131;               !- Volume {m3}
+
+  BuildingSurface:Detailed,
+    Obj:0000,                !- Name
+    FLOOR,                   !- Surface Type
+    %floortype%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    1.00000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %length%,%width%,0.00000,  !- X,Y,Z ==> Vertex 1 {m}
+    %length%,0.00000,0.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    0.00000,0.00000,0.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    0.00000,%width%,0.00000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    Obj:0001,                !- Name
+    WALL,                    !- Surface Type
+    %exwall%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.50000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0.00000,0.00000,3.30000,  !- X,Y,Z ==> Vertex 1 {m}
+    0.00000,0.00000,0.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    %length%,0.00000,0.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    %length%,0.00000,3.30000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    Obj:0002,                !- Name
+    WALL,                    !- Surface Type
+    %exwall%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.50000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %length%,0.00000,3.30000,  !- X,Y,Z ==> Vertex 1 {m}
+    %length%,0.00000,0.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    %length%,%width%,0.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    %length%,%width%,3.30000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    Obj:0003,                !- Name
+    WALL,                    !- Surface Type
+    %exwall%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.50000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    %length%,%width%,3.30000,  !- X,Y,Z ==> Vertex 1 {m}
+    %length%,%width%,0.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    0.00000,%width%,0.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    0.00000,%width%,3.30000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    Obj:0004,                !- Name
+    WALL,                    !- Surface Type
+    %exwall%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.50000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0.00000,%width%,3.30000,  !- X,Y,Z ==> Vertex 1 {m}
+    0.00000,%width%,0.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    0.00000,0.00000,0.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    0.00000,0.00000,3.30000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    Obj:0005,                !- Name
+    ROOF,                    !- Surface Type
+    %rooftype%,                     !- Construction Name
+    Zone1,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.00000,                 !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0.00000,%width%,3.30000,  !- X,Y,Z ==> Vertex 1 {m}
+    0.00000,0.00000,3.30000,  !- X,Y,Z ==> Vertex 2 {m}
+    %length%,0.00000,3.30000,  !- X,Y,Z ==> Vertex 3 {m}
+    %length%,%width%,3.30000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  FenestrationSurface:Detailed,
+    SubObj:0006,             !- Name
+    WINDOW,                  !- Surface Type
+    %wintype%,                     !- Construction Name
+    Obj:0001,                !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    0.50000,                 !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1.00000,                 !- Multiplier
+    4,                       !- Number of Vertices
+    %wwidth1%,0.00000,2.50000,  !- X,Y,Z ==> Vertex 1 {m}
+    %wwidth1%,0.00000,1.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    9.00000,0.00000,1.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    9.00000,0.00000,2.50000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  FenestrationSurface:Detailed,
+    SubObj:0007,             !- Name
+    WINDOW,                  !- Surface Type
+    %wintype%,                     !- Construction Name
+    Obj:0003,                !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    0.50000,                 !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1.00000,                 !- Multiplier
+    4,                       !- Number of Vertices
+    9.00000,%width%,2.50000,  !- X,Y,Z ==> Vertex 1 {m}
+    9.00000,%width%,1.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    %wwidth2%,%width%,1.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    %wwidth2%,%width%,2.50000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  FenestrationSurface:Detailed,
+    SubObj:0008,             !- Name
+    WINDOW,                  !- Surface Type
+    %wintype%,                     !- Construction Name
+    Obj:0004,                !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    0.50000,                 !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1.00000,                 !- Multiplier
+    4,                       !- Number of Vertices
+    0.00000,3.50000,2.50000,  !- X,Y,Z ==> Vertex 1 {m}
+    0.00000,3.50000,1.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    0.00000,%wwidth3%,1.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    0.00000,%wwidth3%,2.50000;  !- X,Y,Z ==> Vertex 4 {m}
+
+  FenestrationSurface:Detailed,
+    SubObj:0009,             !- Name
+    WINDOW,                  !- Surface Type
+    %wintype%,                     !- Construction Name
+    Obj:0002,                !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    0.50000,                 !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    1.00000,                 !- Multiplier
+    4,                       !- Number of Vertices
+    %length%,%wwidth4%,2.50000,  !- X,Y,Z ==> Vertex 1 {m}
+    %length%,%wwidth4%,1.00000,  !- X,Y,Z ==> Vertex 2 {m}
+    %length%,3.50000,1.00000,  !- X,Y,Z ==> Vertex 3 {m}
+    %length%,3.50000,2.50000;  !- X,Y,Z ==> Vertex 4 {m}
+
