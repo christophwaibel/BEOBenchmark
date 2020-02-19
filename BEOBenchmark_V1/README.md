@@ -26,7 +26,7 @@ The 15 problems are from following studies (please cite respectively, should you
 \
 \
 \
-Finally, please cite the forthcoming publication (**to be added**), should you publish own work using this test set. There, you can find a description of all 15 BEO problems (including modifications done to the original problems), and a number of performance metrics for evaluating and comparing your optimization algorithm.
+Finally, please cite the publication [Building energy optimization: An extensive benchmark of global search algorithms](https://doi.org/10.1016/j.enbuild.2019.01.048), should you publish own work using this test set. There, you can find a description of all 15 BEO problems (including modifications done to the original problems), and a number of performance metrics for evaluating and comparing your optimization algorithm.
 \
 \
 \
